@@ -1,0 +1,4 @@
+
+Time: 25-11-2024 16:28:56, Controller: Authentication, Action: AuthenticateUser, Exception: The method or operation is not implemented.
+
+Time: 25-11-2024 16:29:09, Controller: Authentication, Action: AuthenticateUser, Exception: The method or operation is not implemented.
