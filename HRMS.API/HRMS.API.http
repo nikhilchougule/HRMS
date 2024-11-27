@@ -1,0 +1,6 @@
+@HRMS.API_HostAddress = http://localhost:29372
+
+GET {{HRMS.API_HostAddress}}/api/Authentication/CheckAuthorization/
+Accept: application/json
+
+###
