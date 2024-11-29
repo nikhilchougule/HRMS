@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HRMS.Infrastructure\HRMS.Infrastructure.csproj" />
     <ProjectReference Include="..\HRMS.Repository\HRMS.Repository.csproj" />
+    <ProjectReference Include="..\HRMS.ViewModel\HRMS.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

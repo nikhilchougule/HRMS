@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
+using HRMS.ViewModel.Authentication;
+using HRMS.Model.Objects;
+using static HRMS.ViewModel.Authentication.AuthenticationViewModel;
 
 namespace HRMS.Repository.Implementation
 {
     public class AuthenticationRepository : IAuthenticationRepository
     {
+        private HRMSDBContext _context = new HRMSDBContext();
 
         public AuthenticationRepository()
         {
@@ -23,7 +25,6 @@ namespace HRMS.Repository.Implementation
 
             //builder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
         }
-        
 
         void IAuthenticationRepository.CheckUserEmailAndPassword()
         {
@@ -48,29 +49,43 @@ namespace HRMS.Repository.Implementation
            // throw new NotImplementedException();
         }
 
-        Boolean IAuthenticationRepository.RegisterUser(string userEmail, string userPassword)
+        UserSignupResponseViewModel IAuthenticationRepository.RegisterUser(UserSignupRequestViewModel userSignupRequestViewModel)
         {
+            User newUser = new User();
+            UserSignupResponseViewModel userSignupResponseViewModel = new UserSignupResponseViewModel();
 
-            //HRMS.Model.Models.User newUser = new HRMS.Model.Models.User();
+            newUser.Name = userSignupRequestViewModel.Name!;
+            newUser.Email = userSignupRequestViewModel.Email!;
+            newUser.MobileNumber = userSignupRequestViewModel.MobileNumber!;
+            newUser.PasswordHash = userSignupRequestViewModel.PasswordHash!;
+            newUser.PasswordSalt = userSignupRequestViewModel.PasswordSalt!;
 
-            //newUser.Email = "userEmail";
-            //newUser.Password = "userPassword";
+           
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
 
+            //get from database and bind to response
+            userSignupResponseViewModel.Name = userSignupRequestViewModel.Name;
+            userSignupResponseViewModel.Email = userSignupRequestViewModel.Email;
+            userSignupResponseViewModel.MobileNumber = userSignupRequestViewModel.MobileNumber;
 
-            //HRDBContext context = new HRDBContext();
-
-            
-            //context.Users.Add(newUser);
-
-            return false;
+            return userSignupResponseViewModel;
         }
 
-    }
+        UserViewModel IAuthenticationRepository.GetUser(UserSignupRequestViewModel userSignupRequestViewModel)
+        {
+            User user = new User();
+            UserViewModel userViewModel = new UserViewModel();
 
-    public class User
-    {
-        public string ?Email { get; set; }
-        public string ?Password { get; set; }
+            user = _context.Users.FirstOrDefault(x => x.Email == userSignupRequestViewModel.Email)!;
+
+            if (user != null)
+            {
+                userViewModel.Email = user.Email;
+            }
+            
+            return userViewModel;
+        }
     }
 
     public class ApiContext : DbContext
