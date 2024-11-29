@@ -2,3 +2,13 @@
 Time: 25-11-2024 16:28:56, Controller: Authentication, Action: AuthenticateUser, Exception: The method or operation is not implemented.
 
 Time: 25-11-2024 16:29:09, Controller: Authentication, Action: AuthenticateUser, Exception: The method or operation is not implemented.
+
+Time: 29-11-2024 22:00:16, Controller: Authentication, Action: SignupUser, Exception: Object reference not set to an instance of an object.
+
+Time: 29-11-2024 22:00:39, Controller: Authentication, Action: SignupUser, Exception: Object reference not set to an instance of an object.
+
+Time: 29-11-2024 23:30:19, Controller: Authentication, Action: SignupUser, Exception: An error occurred while saving the entity changes. See the inner exception for details.
+
+Time: 29-11-2024 23:33:08, Controller: Authentication, Action: SignupUser, Exception: Object reference not set to an instance of an object.
+
+Time: 29-11-2024 23:37:51, Controller: Authentication, Action: SignupUser, Exception: Object reference not set to an instance of an object.

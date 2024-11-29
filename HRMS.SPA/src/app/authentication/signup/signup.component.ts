@@ -8,13 +8,16 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { CustomizerService } from '../../customizer/customizer.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { DialogComponent } from '../../common/dialog/dialog.component';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
   imports: [RouterLink, MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule, ReactiveFormsModule, NgIf],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+  styleUrl: './signup.component.scss',
+  providers: [DialogComponent]
 })
 
 export class SignupComponent {
@@ -25,13 +28,20 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    public themeService: CustomizerService
+    public themeService: CustomizerService,
+    public authenticationService: AuthenticationService,
+    public dialog: DialogComponent
   ) {
     this.authForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      mobilenumber: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      administrator: false,
+      employee: true,
+      hr: false,
     });
+
     this.themeService.isToggled$.subscribe(isToggled => {
       this.isToggled = isToggled;
     });
@@ -42,12 +52,56 @@ export class SignupComponent {
 
   // Form
   authForm: FormGroup;
+
   onSubmit() {
     if (this.authForm.valid) {
-      this.router.navigate(['/']);
+      //this.router.navigate(['/']);
+      let userSubmitForm = this.authForm.value;
+      let signUpRequest = Object.assign(new SignupRequest(), userSubmitForm)
+
+      console.log('request object' + JSON.stringify(signUpRequest));
+
+      //validateSignupRoleForm(userSubmitRoleForm);
+      //this.authenticationService.signUpUser(userSubmitForm);
     } else {
-      console.log('Form is invalid. Please check the fields.');
+      this.dialog.openDialog('Form is invalid');
     }
   }
 
+}
+
+class SignupRequest {
+  public name!: string;
+  public email!: string;
+  public mobilenumber!: string;
+  public password!: string;
+  public administrator!: boolean;
+  public employee!: boolean;
+  public hr!: boolean;
+}
+
+function validateSignupRoleForm(formData: Object) {
+  let roleFormObject = [];
+  let invalidData = false;
+
+  //alert('validateSignupRoleForm' + JSON.stringify(formData));
+  roleFormObject.push(formData)
+  console.log(JSON.stringify(roleFormObject.length));
+
+  if (roleFormObject.length < 1) invalidData = true;
+
+  let listOfObjects: { [key: string]: any; }[] = [];
+
+  roleFormObject.forEach(function (entry) {
+    const singleObj: { [key: string]: any } = {}
+
+    //singleObj['type'] = 'Role';
+    singleObj['value'] = entry;
+
+    listOfObjects.push(singleObj);
+    console.log('single obj' + singleObj);
+  });
+
+  //console.log(listOfObjects);
+  return true;
 }
