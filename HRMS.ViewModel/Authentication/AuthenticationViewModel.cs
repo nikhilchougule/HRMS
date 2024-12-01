@@ -35,6 +35,27 @@ namespace HRMS.ViewModel.Authentication
             public string? MobileNumber { get; set; }
             public List<string> ?Roles { get; set; }
         }
+
+        public class UserSigninRequestViewModel : UserViewModel
+        {
+            public string? Password { get; set; }
+            public byte[]? PasswordHash { get; set; }
+            public byte[]? PasswordSalt { get; set; }
+            public string? MobileNumber { get; set; }
+            public Boolean Administrator { get; set; }
+            public Boolean Employee { get; set; }
+            public Boolean HR { get; set; }
+            public Boolean Hiree { get; set; }
+        }
+
+        public class UserSigninResponseViewModel : ErrorViewModel
+        {
+            public string? Name { get; set; }
+            public string? Email { get; set; }
+            public string? MobileNumber { get; set; }
+            public string? JwtToken { get; set; }
+            public List<string>? Roles { get; set; }
+        }
     }
 }
 

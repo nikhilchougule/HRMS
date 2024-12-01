@@ -41,7 +41,6 @@ namespace HRMS.Business.Implementation
 
         UserSignupResponseViewModel IAuthenticationBusiness.SignupUser(AuthenticationViewModel.UserSignupRequestViewModel userSignupRequestViewModel)
         {
-
             //Validdate Roles
             //Validate if User Exists
 
@@ -59,7 +58,8 @@ namespace HRMS.Business.Implementation
                     UserSignupResponseViewModel userSignupResponseRegisterViewModel = new UserSignupResponseViewModel();
                     userSignupResponseRegisterViewModel.Roles = new List<string>();
 
-                    byte[] passwordHash, passwordSalt;
+                    byte[] passwordHash;
+                    byte[] passwordSalt;
                     PasswordHasher.CreatePasswordHash(userSignupRequestViewModel.Password!, out passwordHash, out passwordSalt);
 
                     userSignupRequestViewModel.PasswordHash = passwordHash;
@@ -69,19 +69,18 @@ namespace HRMS.Business.Implementation
                     userSignupResponseViewModel.Name = userSignupResponseRegisterViewModel.Name;
                     userSignupResponseViewModel.Email = userSignupResponseRegisterViewModel.Email;
                     userSignupResponseViewModel.MobileNumber = userSignupResponseRegisterViewModel.MobileNumber;
-
                 }
                 else
                 {
                     userSignupResponseViewModel.IsError = true;
-                    userSignupResponseViewModel.ErrorMessages!.Add("User Email Already Exists. You can continue login !");
+                    userSignupResponseViewModel.ErrorMessages!.Add("User Email already exists. You can continue login !");
                 }
+            }                   
 
-            }
-                     
             return userSignupResponseViewModel;
         }
 
+        //Functions
         UserSignupResponseViewModel ValidateRoles(UserSignupRequestViewModel userSignupRequestViewModel)
         {
             UserSignupResponseViewModel userSignupResponseViewModel = new UserSignupResponseViewModel();
@@ -105,10 +104,12 @@ namespace HRMS.Business.Implementation
 
             if (userSignupResponseViewModel.Roles!.Count == 0) {
                 userSignupResponseViewModel.IsError = true;
-                userSignupResponseViewModel.ErrorMessages!.Add("No Roles Checked. Please check atleast one role to continue registration.");
+                userSignupResponseViewModel.ErrorMessages!.Add("No Roles checked. Please check atleast one role to continue Registration.");
             }
 
             return userSignupResponseViewModel;
         }
+        //Functions End
+
     }
 }
