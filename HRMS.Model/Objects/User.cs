@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HRMS.Model.Objects;
 
 [Table("User")]
-[Index("Email", Name = "UQ__User__A9D10534C1EAA93A", IsUnique = true)]
+[Index("Email", Name = "UQ__User__A9D1053489088A4E", IsUnique = true)]
 public partial class User
 {
     [Key]

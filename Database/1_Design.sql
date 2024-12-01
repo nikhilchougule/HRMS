@@ -198,8 +198,6 @@ CREATE TABLE [TestDetail]
 ID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 [TestID] INT NOT NULL,
 [TestCategoryID] INT NOT NULL,
-[QuestionID] INT NOT NULL,
-[OptionID] INT DEFAULT 0  NULL,
 [TimeOut] FLOAT DEFAULT 0 NOT NULL,
 [StartTime] DATETIME NULL,
 [EndTime] DATETIME NULL,
@@ -208,9 +206,18 @@ ID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 [CreatedDate] DATETIME DEFAULT GETDATE(),
 [UpdatedDate] DATETIME NULL
 )
---[TestID.Test.ID] [TestCategoryID.TestCategory.ID] [QuestionID.Question.ID] [TestResultID.TestResult.ID]
+--[TestID.Test.ID] [TestCategoryID.TestCategory.ID] [TestResultID.TestResult.ID]
 GO
 
+---------------------------------------------------------------------------
+CREATE TABLE [TestDetailQuestionOption]
+(
+ID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+[TestDetailID] INT NOT NULL,
+[QuestionID] INT NOT NULL,
+[OptionID] INT DEFAULT 0
+)
+--[TestDetailID.TestDetail.ID] [QuestionID.Question.ID] [OptionID.Option.ID]
 --------------------------------------------------------------------------
 CREATE TABLE [NotificationType]
 (
@@ -281,14 +288,21 @@ ALTER TABLE [Test] WITH NOCHECK ADD CONSTRAINT [FK_Test_CreatedBy_User] FOREIGN 
 GO
 
 --TestDetail
---[TestID.Test.ID] [TestCategoryID.TestCategory.ID] [QuestionID.Question.ID]  [TestResultID.TestResult.ID]
+--[TestID.Test.ID] [TestCategoryID.TestCategory.ID]  [TestResultID.TestResult.ID]
 ALTER TABLE [TestDetail] WITH NOCHECK ADD CONSTRAINT [FK_TestDetail_Test] FOREIGN KEY ([TestID]) REFERENCES [Test]([ID]) 
 GO
 ALTER TABLE [TestDetail] WITH NOCHECK ADD CONSTRAINT [FK_TestDetail_TestCategory] FOREIGN KEY ([TestCategoryID]) REFERENCES [TestCategory]([ID]) 
 GO
-ALTER TABLE [TestDetail] WITH NOCHECK ADD CONSTRAINT [FK_TestDetail_Question] FOREIGN KEY ([QuestionID]) REFERENCES [Question]([ID]) 
-GO
 ALTER TABLE [TestDetail] WITH NOCHECK ADD CONSTRAINT [FK_TestDetail_TestResult] FOREIGN KEY ([TestResultID]) REFERENCES [TestResult]([ID]) 
+GO
+
+--TestDetailQuestionOption
+--[TestDetailID.TestDetail.ID] [QuestionID.Question.ID] [OptionID.Option.ID]
+ALTER TABLE [TestDetailQuestionOption] WITH NOCHECK ADD CONSTRAINT [FK_TestDetailQuestionOption_TestDetail] FOREIGN KEY ([TestDetailID]) REFERENCES [TestDetail]([ID]) 
+GO
+ALTER TABLE [TestDetailQuestionOption] WITH NOCHECK ADD CONSTRAINT [FK_TestDetailQuestionOption_Question] FOREIGN KEY ([QuestionID]) REFERENCES [Question]([ID]) 
+GO
+ALTER TABLE [TestDetailQuestionOption] WITH NOCHECK ADD CONSTRAINT [FK_TestDetailQuestionOption_Option] FOREIGN KEY ([OptionID]) REFERENCES [Option]([ID]) 
 GO
 
 --Notification

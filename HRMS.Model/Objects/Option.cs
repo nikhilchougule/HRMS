@@ -21,4 +21,7 @@ public partial class Option
     [ForeignKey("QuestionId")]
     [InverseProperty("Options")]
     public virtual Question Question { get; set; } = null!;
+
+    [InverseProperty("Option")]
+    public virtual ICollection<TestDetailQuestionOption> TestDetailQuestionOptions { get; set; } = new List<TestDetailQuestionOption>();
 }

@@ -48,5 +48,5 @@ public partial class Question
     public virtual TestCategory TestCategory { get; set; } = null!;
 
     [InverseProperty("Question")]
-    public virtual ICollection<TestDetail> TestDetails { get; set; } = new List<TestDetail>();
+    public virtual ICollection<TestDetailQuestionOption> TestDetailQuestionOptions { get; set; } = new List<TestDetailQuestionOption>();
 }

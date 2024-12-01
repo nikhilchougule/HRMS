@@ -19,12 +19,6 @@ public partial class TestDetail
     [Column("TestCategoryID")]
     public int TestCategoryId { get; set; }
 
-    [Column("QuestionID")]
-    public int QuestionId { get; set; }
-
-    [Column("OptionID")]
-    public int? OptionId { get; set; }
-
     public double TimeOut { get; set; }
 
     [Column(TypeName = "datetime")]
@@ -44,10 +38,6 @@ public partial class TestDetail
     [Column(TypeName = "datetime")]
     public DateTime? UpdatedDate { get; set; }
 
-    [ForeignKey("QuestionId")]
-    [InverseProperty("TestDetails")]
-    public virtual Question Question { get; set; } = null!;
-
     [ForeignKey("TestId")]
     [InverseProperty("TestDetails")]
     public virtual Test Test { get; set; } = null!;
@@ -55,6 +45,9 @@ public partial class TestDetail
     [ForeignKey("TestCategoryId")]
     [InverseProperty("TestDetails")]
     public virtual TestCategory TestCategory { get; set; } = null!;
+
+    [InverseProperty("TestDetail")]
+    public virtual ICollection<TestDetailQuestionOption> TestDetailQuestionOptions { get; set; } = new List<TestDetailQuestionOption>();
 
     [ForeignKey("TestResultId")]
     [InverseProperty("TestDetails")]
