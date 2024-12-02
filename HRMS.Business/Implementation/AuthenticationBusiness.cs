@@ -1,6 +1,5 @@
 ﻿using HRMS.Business.Contract;
 using HRMS.Infrastructure.Common;
-using HRMS.Model.Objects;
 using HRMS.Repository.Contract;
 using HRMS.Repository.Implementation;
 using HRMS.ViewModel.Authentication;
@@ -66,7 +65,7 @@ namespace HRMS.Business.Implementation
                     userSignupResponseViewModel.Email = userSignupResponseRegisterViewModel.Email;
                     userSignupResponseViewModel.MobileNumber = userSignupResponseRegisterViewModel.MobileNumber;
 
-                    var sdfsdf = _authRepository.RegisterUserRoles(userSignupResponseViewModel);
+                     _authRepository.RegisterUserRoles(userSignupResponseViewModel);
                 }
                 else
                 {
@@ -76,6 +75,22 @@ namespace HRMS.Business.Implementation
             }                   
             return userSignupResponseViewModel;
         }
+
+        UserSigninResponseViewModel IAuthenticationBusiness.SigninUser(AuthenticationViewModel.UserSigninRequestViewModel userSigninRequestViewModel)
+        {
+            UserSigninResponseViewModel userSigninResponseViewModel = _authRepository.GetUserForSignin(userSigninRequestViewModel);
+            if (userSigninResponseViewModel.IsValid! == false || !PasswordHasher.VerifyPasswordHash(userSigninRequestViewModel.Password!, userSigninResponseViewModel.PasswordHash!, userSigninResponseViewModel.PasswordSalt!))
+            {
+                userSigninResponseViewModel.IsValid = false;
+                userSigninResponseViewModel.ErrorMessages!.Add("Invalid User. Please contact HR team !");
+            }
+            else
+            {
+                userSigninResponseViewModel.IsValid = true;
+            }
+            return userSigninResponseViewModel;
+        }
+
 
         //Functions
         UserSignupResponseViewModel ValidateRoles(UserSignupRequestViewModel userSignupRequestViewModel)
@@ -88,31 +103,25 @@ namespace HRMS.Business.Implementation
             {
                 userSignupResponseViewModel.Roles!.Add("Administrator");
             }
-
             if(userSignupRequestViewModel.Employee == true)
             {
                 userSignupResponseViewModel.Roles!.Add("Employee");
             }
-
             if (userSignupRequestViewModel.HR == true) 
             {
                 userSignupResponseViewModel.Roles!.Add("HR");
             }
-
             if (userSignupResponseViewModel.Roles!.Count == 0) {
                 userSignupResponseViewModel.IsError = true;
                 userSignupResponseViewModel.ErrorMessages!.Add("No Roles checked. Please check atleast one role to continue Registration.");
             }
-
             return userSignupResponseViewModel;
         }
 
         UserRoleViewModel AssignUserRoles(UserSignupResponseViewModel userSignupResponseViewModel)
         {
             UserRoleViewModel userRoleViewModel = new UserRoleViewModel();
-
             userRoleViewModel = _authRepository.RegisterUserRoles(userSignupResponseViewModel);
-
             return userRoleViewModel;
         }
         //Functions End

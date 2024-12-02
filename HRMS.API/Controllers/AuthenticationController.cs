@@ -29,36 +29,34 @@ namespace HRMS.API.Controllers
         [Route("SignupUser")]
         public IActionResult SignupUser(UserSignupRequestViewModel userSignupRequestViewModel)
         {
-
             UserSignupResponseViewModel userSignupResponseViewModel = _authBusiness.SignupUser(userSignupRequestViewModel);
-
             return Ok(userSignupResponseViewModel);
         }
 
-
         [HttpPost]
-        //[Route("AuthenticateUser")]
-        //public IActionResult AuthenticateUser(UserSignupRequestViewModel UserSignupRequestViewModel)
-        //{
-        //    //Check if userEmail and Password valid. IF Yes, then send token else send invalid message
+        [Route("AuthenticateUser")]
+        public IActionResult AuthenticateUser(UserSigninRequestViewModel userSigninRequestViewModel)
+        {
+            UserSigninResponseViewModel userSigninResponseViewModel = _authBusiness.SigninUser(userSigninRequestViewModel);
 
-        //    if (_authBusiness.IsValidUser(UserSignupRequestViewModel.Email, UserSignupRequestViewModel.Password))
-        //    {
-        //        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
-        //        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-        //        var Sectoken = new JwtSecurityToken(_config["Jwt:Issuer"], _config["Jwt:Issuer"], null, expires: DateTime.Now.AddMinutes(120), signingCredentials: credentials);
-        //        var token = new JwtSecurityTokenHandler().WriteToken(Sectoken);
-
-        //        return Ok(token);
-        //    }
-        //    else
-        //    {
-        //        return Ok("NoUserPasswordCombinationFound");
-        //    }
-
-        //    return Ok("df");
-        //}
+            if (userSigninResponseViewModel.IsValid)
+            {
+                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+                var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+                var Sectoken = new JwtSecurityToken(_config["Jwt:Issuer"], _config["Jwt:Issuer"], null, expires: DateTime.Now.AddMinutes(120), signingCredentials: credentials);
+                var token = new JwtSecurityTokenHandler().WriteToken(Sectoken);
+                userSigninResponseViewModel.JwtToken = token;
+                userSigninResponseViewModel.PasswordHash = null;
+                userSigninResponseViewModel.PasswordSalt = null;
+                return Ok(userSigninResponseViewModel);
+            }
+            else
+            {
+                userSigninResponseViewModel.PasswordHash = null;
+                userSigninResponseViewModel.PasswordSalt = null;
+                return Unauthorized(userSigninResponseViewModel);
+            }
+        }
 
         [HttpGet]
         [Route("CheckAuthorization")]
