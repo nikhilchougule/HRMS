@@ -25,7 +25,7 @@ export class DialogComponent {
     public dialog: MatDialog
   ) { }
 
-  openDialog(dialogData: String) {
+  openDialog(dialogData: Array<String> = []) {
     const dialogRef = this.dialog.open(DialogContent, { data: dialogData });
 
     dialogRef.afterClosed().subscribe(result => {

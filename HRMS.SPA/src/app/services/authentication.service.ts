@@ -2,29 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-
-export class AuthenticationService {
-
-  constructor(private http: HttpClient) {
-  }
-
-  signUpUserObservable(userSubmitForm: any): Observable<UserSignupResponse> {
-    const newUserSignupRequest = new UserSignupRequest(userSubmitForm.name, userSubmitForm.email, userSubmitForm.mobilenumber, userSubmitForm.password, userSubmitForm.administrator, userSubmitForm.employee, userSubmitForm.hr);
-
-   return this.http.post<UserSignupRequest>('http://localhost:29372/api/authentication/signupuser', JSON.stringify(newUserSignupRequest), httpOptions).pipe(
-      tap(data => console.log('in suthentication.service observable: ' + JSON.stringify(data)))
-    );
-
-  }
-
-
-  public signInUser() {
-    alert('from auth service signin function');
-  }
-}
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -74,4 +51,23 @@ export class UserSignupResponse {
     this.errorMessages = errorMessages;
   }
 }
-//End classes
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class AuthenticationService {
+
+  constructor(private http: HttpClient) {
+  }
+
+  signUpUserObservable(userSubmitForm: any): Observable<UserSignupResponse> {
+    const newUserSignupRequest = new UserSignupRequest(userSubmitForm.name, userSubmitForm.email, userSubmitForm.mobilenumber, userSubmitForm.password, userSubmitForm.administrator, userSubmitForm.employee, userSubmitForm.hr);
+   return this.http.post<UserSignupRequest>('http://localhost:29372/api/authentication/signupuser', JSON.stringify(newUserSignupRequest), httpOptions).pipe(
+     tap(data => console.log('in suthentication.service observable: ' + JSON.stringify(data))
+     )
+    );
+
+  }
+
+}
