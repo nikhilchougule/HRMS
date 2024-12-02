@@ -39,6 +39,9 @@ public partial class Question
     [InverseProperty("Question")]
     public virtual ICollection<Option> Options { get; set; } = new List<Option>();
 
+    [InverseProperty("Question")]
+    public virtual ICollection<QuestionOption> QuestionOptions { get; set; } = new List<QuestionOption>();
+
     [ForeignKey("QuestionTypeId")]
     [InverseProperty("Questions")]
     public virtual QuestionType? QuestionType { get; set; }

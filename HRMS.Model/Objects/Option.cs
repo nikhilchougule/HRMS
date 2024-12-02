@@ -23,5 +23,8 @@ public partial class Option
     public virtual Question Question { get; set; } = null!;
 
     [InverseProperty("Option")]
+    public virtual ICollection<QuestionOption> QuestionOptions { get; set; } = new List<QuestionOption>();
+
+    [InverseProperty("Option")]
     public virtual ICollection<TestDetailQuestionOption> TestDetailQuestionOptions { get; set; } = new List<TestDetailQuestionOption>();
 }

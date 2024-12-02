@@ -11,7 +11,7 @@ truncate table [User]
 delete from [User]
 
 --DBCCINDENT 
-SELECT * FROM [User]
+SELECT * FROM [User] ORDER BY CreatedDate DESC
 SELECT * FROM TestCategory
 SELECT * FROM Test
 SELECT * FROM TestDetail
@@ -22,3 +22,5 @@ SELECT * FROM [Madiba_Onboarding].[dbo].TestCategory
 SELECT * FROM [Madiba_Onboarding].[dbo].TestMaster ORDER BY CreatedDate DESC
 SELECT * FROM [Madiba_Onboarding].[dbo].TestDetails
 SELECT * FROM [Madiba_Onboarding].[dbo].TestMasterTestCategories
+
+select * from [UserRole]

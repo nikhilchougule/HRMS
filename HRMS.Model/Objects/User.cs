@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HRMS.Model.Objects;
 
 [Table("User")]
-[Index("Email", Name = "UQ__User__A9D1053489088A4E", IsUnique = true)]
+[Index("Email", Name = "UQ__User__A9D105347F5744B5", IsUnique = true)]
 public partial class User
 {
     [Key]
@@ -45,4 +45,13 @@ public partial class User
 
     [InverseProperty("User")]
     public virtual ICollection<Test> TestUsers { get; set; } = new List<Test>();
+
+    [InverseProperty("User")]
+    public virtual ICollection<UserProfile> UserProfiles { get; set; } = new List<UserProfile>();
+
+    [InverseProperty("User")]
+    public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+
+    [InverseProperty("User")]
+    public virtual ICollection<UserSkill> UserSkills { get; set; } = new List<UserSkill>();
 }
