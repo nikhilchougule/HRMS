@@ -24,8 +24,6 @@ import { UserSignupRequest, UserSignupResponse } from '../../models/authenticati
 
 export class SignupComponent {
 
-  user$!: Observable<UserSignupRequest>;
-
   // isToggled
   isToggled = false;
 
@@ -63,12 +61,9 @@ export class SignupComponent {
       let userSubmitForm = this.authForm.value;
       let signUpRequest = Object.assign(new UserSignupRequest(userSubmitForm.name, userSubmitForm.email, userSubmitForm.mobilenumber, userSubmitForm.password, userSubmitForm.administrator, userSubmitForm.employee, userSubmitForm.hr), userSubmitForm)
 
-      console.log('form object signup' + JSON.stringify(signUpRequest));
-
       let returnFromService = this.authenticationService.signUpUserObservable(signUpRequest)
         .subscribe(response => {
           if (response.IsError == true) {
-            console.log('error flag is true. raise dialog with messages' + response.ErrorMessages);
             this.dialog.openDialog(response.ErrorMessages);
           } else if (response.IsError == false) {
             this.dialog.openDialog(["Your Account was successfully created. Please login to continue !"]);
