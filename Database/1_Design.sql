@@ -91,6 +91,7 @@ GO
 --Hire [ExperienceLevelID, TotalExperience, Company, Designation, Teams] 
 CREATE TABLE [UserProfile]
 (
+ID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 [UserID] INT NOT NULL,
 [ExperienceLevelID] INT NULL,
 [TotalExperience] FLOAT NULL,
@@ -104,6 +105,7 @@ GO
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE [UserSkill]
 (
+ID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 [UserID] INT NOT NULL,
 [SkillID] INT NOT NULL
 )
@@ -113,6 +115,7 @@ GO
 -------------------------------------------------------------------
 CREATE TABLE [UserRole]
 (
+ID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 [UserID] INT NOT NULL,
 [RoleID] INT NOT NULL
 )
@@ -171,6 +174,7 @@ GO
 --------------------------------------------------------
 CREATE TABLE [QuestionOption]
 (
+ID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 [QuestionID] INT NOT NULL,
 [OptionID] INT NOT NULL
 )

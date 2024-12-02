@@ -30,10 +30,11 @@ namespace HRMS.ViewModel.Authentication
 
         public class UserSignupResponseViewModel : ErrorViewModel
         {
+            public int UserID { get; set; }
             public string? Name { get; set; }
             public string? Email { get; set; }
             public string? MobileNumber { get; set; }
-            public List<string> ?Roles { get; set; }
+            public List<string>? Roles { get; set; } = new List<String>();
         }
 
         public class UserSigninRequestViewModel : UserViewModel

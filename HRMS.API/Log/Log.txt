@@ -12,3 +12,7 @@ Time: 29-11-2024 23:30:19, Controller: Authentication, Action: SignupUser, Excep
 Time: 29-11-2024 23:33:08, Controller: Authentication, Action: SignupUser, Exception: Object reference not set to an instance of an object.
 
 Time: 29-11-2024 23:37:51, Controller: Authentication, Action: SignupUser, Exception: Object reference not set to an instance of an object.
+
+Time: 02-12-2024 15:31:52, Controller: Authentication, Action: SignupUser, Exception: The method or operation is not implemented.
+
+Time: 02-12-2024 15:32:37, Controller: Authentication, Action: SignupUser, Exception: The method or operation is not implemented.

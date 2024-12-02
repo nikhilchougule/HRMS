@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using HRMS.ViewModel.Authentication;
 using HRMS.Model.Objects;
 using static HRMS.ViewModel.Authentication.AuthenticationViewModel;
+using HRMS.ViewModel.Common;
 
 namespace HRMS.Repository.Implementation
 {
@@ -46,7 +47,7 @@ namespace HRMS.Repository.Implementation
 
             //var dfd = context.HireeRoles.ToList();
 
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         UserSignupResponseViewModel IAuthenticationRepository.RegisterUser(UserSignupRequestViewModel userSignupRequestViewModel)
@@ -65,14 +66,17 @@ namespace HRMS.Repository.Implementation
             {
                 _context.Users.Add(newUser);
                 _context.SaveChanges();
+                userSignupResponseViewModel.UserID = newUser.Id;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 userSignupResponseViewModel.IsError = true;
                 userSignupResponseViewModel.ErrorMessages.Add("User registration failed. Please contact HR Team !");
                 userSignupResponseViewModel.ErrorMessages.Add(ex.Message);
             }
 
             //get from database and bind to response
+
             userSignupResponseViewModel.Name = userSignupRequestViewModel.Name;
             userSignupResponseViewModel.Email = userSignupRequestViewModel.Email;
             userSignupResponseViewModel.MobileNumber = userSignupRequestViewModel.MobileNumber;
@@ -91,8 +95,36 @@ namespace HRMS.Repository.Implementation
             {
                 userViewModel.Email = user.Email;
             }
-            
+
             return userViewModel;
+        }
+
+        UserRoleViewModel IAuthenticationRepository.RegisterUserRoles(UserSignupResponseViewModel userSignupResponseViewModel)
+        {
+            UserRoleViewModel userRoleViewModel = new UserRoleViewModel();
+            userRoleViewModel.Roles = userSignupResponseViewModel.Roles!;
+
+            List<string> roles = userSignupResponseViewModel.Roles!;
+
+            List<UserRole> userRoles = new List<UserRole>();
+
+            var rolesID = _context.Roles
+            .Where(c => roles.Contains(c.Name)).Select(x => x.Id)
+            .ToList();
+
+            foreach (var roleID in rolesID) { 
+            userRoles.Add(new UserRole { UserId = userSignupResponseViewModel.UserID, RoleId = roleID });
+            }
+
+            if (userRoles.Count > 0) { 
+            foreach(var userRole in userRoles)
+                {
+                    _context.UserRoles.Add(userRole);
+                }
+            _context.SaveChanges();
+            }
+
+            return userRoleViewModel;
         }
     }
 
@@ -102,10 +134,10 @@ namespace HRMS.Repository.Implementation
         {
         }
 
-   //     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-   //=> optionsBuilder.UseSqlServer("Data Source=LENOVO-NIK\\SQLEXPRESS2022;Initial Catalog=HRMS;Trusted_Connection=True;TrustServerCertificate=True;");
+        //     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //=> optionsBuilder.UseSqlServer("Data Source=LENOVO-NIK\\SQLEXPRESS2022;Initial Catalog=HRMS;Trusted_Connection=True;TrustServerCertificate=True;");
 
-   //     options.UseSqlServer(
-   //                         configuration.GetConnectionString("DefaultConnection")
+        //     options.UseSqlServer(
+        //                         configuration.GetConnectionString("DefaultConnection")
     }
 }

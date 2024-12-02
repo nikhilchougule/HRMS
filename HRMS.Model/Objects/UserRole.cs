@@ -6,10 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HRMS.Model.Objects;
 
-[Keyless]
 [Table("UserRole")]
 public partial class UserRole
 {
+    [Key]
+    [Column("ID")]
+    public int Id { get; set; }
+
     [Column("UserID")]
     public int UserId { get; set; }
 
@@ -17,8 +20,10 @@ public partial class UserRole
     public int RoleId { get; set; }
 
     [ForeignKey("RoleId")]
+    [InverseProperty("UserRoles")]
     public virtual Role Role { get; set; } = null!;
 
     [ForeignKey("UserId")]
+    [InverseProperty("UserRoles")]
     public virtual User User { get; set; } = null!;
 }

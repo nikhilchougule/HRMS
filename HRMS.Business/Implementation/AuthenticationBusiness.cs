@@ -4,6 +4,7 @@ using HRMS.Model.Objects;
 using HRMS.Repository.Contract;
 using HRMS.Repository.Implementation;
 using HRMS.ViewModel.Authentication;
+using HRMS.ViewModel.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static HRMS.ViewModel.Authentication.AuthenticationViewModel;
+using static HRMS.ViewModel.Common.UserRoleViewModel;
 
 namespace HRMS.Business.Implementation
 {
@@ -41,19 +43,12 @@ namespace HRMS.Business.Implementation
 
         UserSignupResponseViewModel IAuthenticationBusiness.SignupUser(AuthenticationViewModel.UserSignupRequestViewModel userSignupRequestViewModel)
         {
-            //Validdate Roles
-            //Validate if User Exists
-
             UserSignupResponseViewModel userSignupResponseViewModel = new UserSignupResponseViewModel();
-
             userSignupResponseViewModel = ValidateRoles(userSignupRequestViewModel);
 
             if (!userSignupResponseViewModel.IsError)
             {
-
                 UserViewModel user = _authRepository.GetUser(userSignupRequestViewModel);
-
-                //check with Email as well
                 if (user.Email == null) {
                     UserSignupResponseViewModel userSignupResponseRegisterViewModel = new UserSignupResponseViewModel();
                     userSignupResponseRegisterViewModel.Roles = new List<string>();
@@ -61,14 +56,17 @@ namespace HRMS.Business.Implementation
                     byte[] passwordHash;
                     byte[] passwordSalt;
                     PasswordHasher.CreatePasswordHash(userSignupRequestViewModel.Password!, out passwordHash, out passwordSalt);
-
                     userSignupRequestViewModel.PasswordHash = passwordHash;
                     userSignupRequestViewModel.PasswordSalt = passwordSalt;
-                    userSignupResponseRegisterViewModel = _authRepository.RegisterUser(userSignupRequestViewModel);
 
+                    userSignupResponseRegisterViewModel = _authRepository.RegisterUser(userSignupRequestViewModel);
+                    
+                    userSignupResponseViewModel.UserID = userSignupResponseRegisterViewModel.UserID;
                     userSignupResponseViewModel.Name = userSignupResponseRegisterViewModel.Name;
                     userSignupResponseViewModel.Email = userSignupResponseRegisterViewModel.Email;
                     userSignupResponseViewModel.MobileNumber = userSignupResponseRegisterViewModel.MobileNumber;
+
+                    var sdfsdf = _authRepository.RegisterUserRoles(userSignupResponseViewModel);
                 }
                 else
                 {
@@ -76,7 +74,6 @@ namespace HRMS.Business.Implementation
                     userSignupResponseViewModel.ErrorMessages!.Add("User Email already exists. You can continue login !");
                 }
             }                   
-
             return userSignupResponseViewModel;
         }
 
@@ -108,6 +105,15 @@ namespace HRMS.Business.Implementation
             }
 
             return userSignupResponseViewModel;
+        }
+
+        UserRoleViewModel AssignUserRoles(UserSignupResponseViewModel userSignupResponseViewModel)
+        {
+            UserRoleViewModel userRoleViewModel = new UserRoleViewModel();
+
+            userRoleViewModel = _authRepository.RegisterUserRoles(userSignupResponseViewModel);
+
+            return userRoleViewModel;
         }
         //Functions End
 

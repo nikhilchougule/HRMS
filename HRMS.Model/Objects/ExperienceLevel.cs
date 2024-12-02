@@ -18,4 +18,7 @@ public partial class ExperienceLevel
 
     [InverseProperty("ExperienceLevel")]
     public virtual ICollection<Question> Questions { get; set; } = new List<Question>();
+
+    [InverseProperty("ExperienceLevel")]
+    public virtual ICollection<UserProfile> UserProfiles { get; set; } = new List<UserProfile>();
 }
