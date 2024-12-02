@@ -11,6 +11,7 @@ import { CustomizerService } from '../../customizer/customizer.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { DialogComponent } from '../../common/dialog/dialog.component';
 import { UserSigninRequest, UserSigninResponse } from '../../models/authentication.model'
+import { APIToken } from '../../api.config';
 
 @Component({
   selector: 'app-sign-in',
@@ -54,21 +55,21 @@ export class SigninComponent {
       let userSubmitForm = this.authForm.value;
       let errorMessages: Array<String> = [];
       let signInRequest = Object.assign(new UserSigninRequest(userSubmitForm.name, userSubmitForm.password), userSubmitForm)
-      console.log('sign in form object' + JSON.stringify(signInRequest));
 
       let returnFromService = this.authenticationService.signInUserObservable(signInRequest)
         .subscribe(response => {
           if (response.IsError == true || response.IsValid == false) {
-            console.log('is error in login' + response.ErrorMessages);
             this.dialog.openDialog(response.ErrorMessages);
-          } else if (response.IsError == false || response.IsValid == true) {
+          } else
+            if (response.IsError == false || response.IsValid == true) {
+            //new APIToken(response.JwtToken!);
+            localStorage.setItem('JwtToken', 'bearer '+ response.JwtToken )
             this.dialog.openDialog(['Login Successfull. We will redirect you to the dashboard !']);
             //this.router.navigate(['/']);
           }
         });
-
     } else {
-      console.log('Form is invalid. Please check the fields.');
+      console.log('Your Login Form is invalid. Please review it before continuing Login !');
     }
   }
 
