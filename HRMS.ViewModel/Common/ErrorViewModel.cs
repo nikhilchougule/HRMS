@@ -9,7 +9,7 @@ namespace HRMS.ViewModel.Common
     public abstract class ErrorViewModel
     {
         public Boolean IsError { get; set; }
-        public List<string> ?ErrorMessages { get; set; }
+        public List<string> ?ErrorMessages { get; set; } = new List<string>();
     }
 
 }

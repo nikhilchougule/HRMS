@@ -19,5 +19,7 @@ namespace HRMS.Repository.Contract
         public UserViewModel GetUser(UserSignupRequestViewModel userSignupRequestViewModel);
 
         public UserRoleViewModel RegisterUserRoles(UserSignupResponseViewModel userSignupResponseViewModel);
+
+        public UserSigninResponseViewModel GetUserForSignin(UserSigninRequestViewModel userSigninRequestViewModel);
     }
 }

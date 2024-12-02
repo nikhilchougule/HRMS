@@ -13,5 +13,7 @@ namespace HRMS.Business.Contract
         public Boolean SendMailConfirmation(string userEmail);
 
         public UserSignupResponseViewModel SignupUser(UserSignupRequestViewModel userSignupRequestViewModel);
+
+        public UserSigninResponseViewModel SigninUser(UserSigninRequestViewModel userSigninRequestViewModel);
     }
 }

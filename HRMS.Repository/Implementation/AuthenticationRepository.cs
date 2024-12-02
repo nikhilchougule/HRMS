@@ -99,6 +99,35 @@ namespace HRMS.Repository.Implementation
             return userViewModel;
         }
 
+        UserSigninResponseViewModel IAuthenticationRepository.GetUserForSignin(UserSigninRequestViewModel userSigninRequestViewModel)
+        {
+            User user = new User();
+            UserSigninResponseViewModel userSigninResponseViewModel = new UserSigninResponseViewModel();
+
+            user = _context.Users.FirstOrDefault(x => x.Email == userSigninRequestViewModel.Email)!;
+
+            if (user != null)
+            {
+                userSigninResponseViewModel.UserID = user.Id;
+                userSigninResponseViewModel.Email = user.Email;
+                userSigninResponseViewModel.Name = user.Name;
+                userSigninResponseViewModel.MobileNumber = user.MobileNumber;
+                userSigninResponseViewModel.PasswordHash = user.PasswordHash;
+                userSigninResponseViewModel.PasswordSalt = user.PasswordSalt;
+
+                List<string> userRoles = _context.UserRoles.Where(x => x.UserId == user.Id!).Select(x => x.Role.Name).ToList();
+                userSigninResponseViewModel.Roles = userRoles;
+
+                userSigninResponseViewModel.IsValid = true;
+            }
+            else
+            {
+                userSigninResponseViewModel.IsValid = false;
+            }
+
+            return userSigninResponseViewModel;
+        }
+
         UserRoleViewModel IAuthenticationRepository.RegisterUserRoles(UserSignupResponseViewModel userSignupResponseViewModel)
         {
             UserRoleViewModel userRoleViewModel = new UserRoleViewModel();
@@ -116,12 +145,20 @@ namespace HRMS.Repository.Implementation
             userRoles.Add(new UserRole { UserId = userSignupResponseViewModel.UserID, RoleId = roleID });
             }
 
-            if (userRoles.Count > 0) { 
-            foreach(var userRole in userRoles)
+            if (userRoles.Count > 0)
+            {
+                try
                 {
-                    _context.UserRoles.Add(userRole);
+                    foreach (var userRole in userRoles)
+                    {
+                        _context.UserRoles.Add(userRole);
+                    }
+                    _context.SaveChanges();
                 }
-            _context.SaveChanges();
+                catch(Exception ex)
+                {
+
+                }
             }
 
             return userRoleViewModel;
