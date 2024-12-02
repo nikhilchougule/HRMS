@@ -34,8 +34,8 @@ namespace HRMS.API.Controllers
         }
 
         [HttpPost]
-        [Route("AuthenticateUser")]
-        public IActionResult AuthenticateUser(UserSigninRequestViewModel userSigninRequestViewModel)
+        [Route("SigninUser")]
+        public IActionResult SigninUser(UserSigninRequestViewModel userSigninRequestViewModel)
         {
             UserSigninResponseViewModel userSigninResponseViewModel = _authBusiness.SigninUser(userSigninRequestViewModel);
 
@@ -54,7 +54,7 @@ namespace HRMS.API.Controllers
             {
                 userSigninResponseViewModel.PasswordHash = null;
                 userSigninResponseViewModel.PasswordSalt = null;
-                return Unauthorized(userSigninResponseViewModel);
+                return Ok(userSigninResponseViewModel);
             }
         }
 
@@ -66,7 +66,6 @@ namespace HRMS.API.Controllers
             return Ok("AuthorizedSuccessfull");
         }
 
-        //UserSignupRequestViewModel
     }
 
     

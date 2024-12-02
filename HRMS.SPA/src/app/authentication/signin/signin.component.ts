@@ -8,13 +8,21 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { CustomizerService } from '../../customizer/customizer.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { DialogComponent } from '../../common/dialog/dialog.component';
+
+class UserSigninRequest {
+  public email?: string;
+  public password?: string;
+}
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
   imports: [RouterLink, MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule, ReactiveFormsModule, NgIf],
   templateUrl: './signin.component.html',
-  styleUrl: './signin.component.scss'
+  styleUrl: './signin.component.scss',
+  providers: [DialogComponent]
 })
 
 export class SigninComponent {
@@ -25,7 +33,9 @@ export class SigninComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    public themeService: CustomizerService
+    public themeService: CustomizerService,
+    public authenticationService: AuthenticationService,
+    public dialog: DialogComponent
   ) {
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,9 +51,26 @@ export class SigninComponent {
 
   // Form
   authForm: FormGroup;
+
   onSubmit() {
     if (this.authForm.valid) {
-      this.router.navigate(['/']);
+      //this.router.navigate(['/']);
+      let userSubmitForm = this.authForm.value;
+      let errorMessages: Array<String> = [];
+      let signInRequest = Object.assign(new UserSigninRequest(), userSubmitForm)
+      console.log('form object' + JSON.stringify(signInRequest));
+
+      let returnFromService = this.authenticationService.signInUserObservable(signInRequest)
+        .subscribe(response => {
+          if (response.IsError == true || response.IsValid == false) {
+            console.log('is error in login' + response.ErrorMessages);
+            this.dialog.openDialog(response.ErrorMessages);
+          } else if (response.IsError == false || response.IsValid == true) {
+            this.dialog.openDialog(['Login Successfull. We will redirect you to the dashboard !']);
+            //this.router.navigate(['/']);
+          }
+        });
+
     } else {
       console.log('Form is invalid. Please check the fields.');
     }

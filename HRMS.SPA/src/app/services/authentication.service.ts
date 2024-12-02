@@ -15,42 +15,69 @@ const httpOptions = {
   })
 };
 
-//classes
-export class UserSignupRequest {
-  public name?: string;
-  public email?: string;
-  public mobilenumber?: string;
-  public password?: string;
-  public administrator?: boolean;
-  public employee?: boolean;
-  public hr?: boolean;
+//classes UserSignUp
+ class UserSignupRequest {
+  public Name?: string;
+  public Email?: string;
+  public MobileNumber?: string;
+  public Password?: string;
+  public Administrator?: boolean;
+  public Employee?: boolean;
+  public HR?: boolean;
 
-  public constructor(name: string, email: string, mobilenumber: string, password: string, administrator: boolean, employee: boolean, hr: boolean) {
-    this.name = name;
-    this.email = email;
-    this.mobilenumber = mobilenumber;
-    this.password = password;
-    this.administrator = administrator;
-    this.employee = employee;
-    this.hr = hr;
+  public constructor(Name: string, Email: string, MobileNumber: string, Password: string, Administrator: boolean, Employee: boolean, HR: boolean) {
+    this.Name = Name;
+    this.Email = Email;
+    this.MobileNumber = MobileNumber;
+    this.Password = Password;
+    this.Administrator = Administrator;
+    this.Employee = Employee;
+    this.HR = HR;
   }
 }
 
-export class UserSignupResponse {
-  public name?: string;
-  public email?: string;
-  public mobilenumber?: string;
-  public isError?: boolean;
-  public errorMessages?: string[];
+ class UserSignupResponse {
+  public Name?: string;
+  public Email?: string;
+  public MobileNumber?: string;
+  public IsError?: boolean;
+  public ErrorMessages?: string[];
 
-  public constructor(name: string, email: string, mobilenumber: string, isError: boolean, errorMessages: string[]) {
-    this.name = name;
-    this.email = email;
-    this.mobilenumber = mobilenumber;
-    this.isError = isError;
-    this.errorMessages = errorMessages;
+  public constructor(Name: string, Email: string, MobileNumber: string, IsError: boolean, ErrorMessages: string[]) {
+    this.Name = Name;
+    this.Email = Email;
+    this.MobileNumber = MobileNumber;
+    this.IsError = IsError;
+    this.ErrorMessages = ErrorMessages;
   }
 }
+//Classess UserSignUp End
+
+//Classes UserSignIn
+class UserSigninRequest {
+  public Email?: string;
+  public Password?: string;
+
+  public constructor(Email: string, Password: string) {
+      this.Email = Email,
+      this.Password = Password
+  }
+}
+
+class UserSigninResponse {
+  public Name?: string;
+  public Email?: string;
+  public Password?: string;
+  public Mobilenumber?: string;
+  public JwtToken?: string;
+  public Roles?: Array<string> = [];
+  public IsError?: boolean;
+  public IsValid?: boolean;
+  public ErrorMessages?: Array<string> = []
+}
+//Classes UserSignIn End
+
+//Classess End
 
 @Injectable({
   providedIn: 'root'
@@ -63,11 +90,18 @@ export class AuthenticationService {
 
   signUpUserObservable(userSubmitForm: any): Observable<UserSignupResponse> {
     const newUserSignupRequest = new UserSignupRequest(userSubmitForm.name, userSubmitForm.email, userSubmitForm.mobilenumber, userSubmitForm.password, userSubmitForm.administrator, userSubmitForm.employee, userSubmitForm.hr);
-   return this.http.post<UserSignupRequest>('http://localhost:29372/api/authentication/signupuser', JSON.stringify(newUserSignupRequest), httpOptions).pipe(
-     tap(data => console.log('in suthentication.service observable: ' + JSON.stringify(data))
-     )
+    return this.http.post<UserSignupRequest>('http://localhost:29372/api/authentication/SignupUser', JSON.stringify(newUserSignupRequest), httpOptions).pipe(
+      tap(data => console.log('in authentication.service.signup observable: ' + JSON.stringify(data))
+      )
     );
+  }
 
+  signInUserObservable(userSubmitForm: any): Observable<UserSigninResponse> {
+    const newUserSigninRequest = new UserSigninRequest(userSubmitForm.email, userSubmitForm.password);
+    return this.http.post<UserSigninRequest>('http://localhost:29372/api/authentication/SigninUser', JSON.stringify(newUserSigninRequest), httpOptions).pipe(
+      tap(data => console.log('in suthentication.service.signin observable: ' + JSON.stringify(data))
+      )
+    );
   }
 
 }
