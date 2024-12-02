@@ -53,6 +53,7 @@ namespace HRMS.Repository.Implementation
         {
             User newUser = new User();
             UserSignupResponseViewModel userSignupResponseViewModel = new UserSignupResponseViewModel();
+            userSignupResponseViewModel.ErrorMessages = new List<string>();
 
             newUser.Name = userSignupRequestViewModel.Name!;
             newUser.Email = userSignupRequestViewModel.Email!;
@@ -60,9 +61,16 @@ namespace HRMS.Repository.Implementation
             newUser.PasswordHash = userSignupRequestViewModel.PasswordHash!;
             newUser.PasswordSalt = userSignupRequestViewModel.PasswordSalt!;
 
-           
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
+            try
+            {
+                _context.Users.Add(newUser);
+                _context.SaveChanges();
+            }
+            catch (Exception ex) {
+                userSignupResponseViewModel.IsError = true;
+                userSignupResponseViewModel.ErrorMessages.Add("User registration failed. Please contact HR Team !");
+                userSignupResponseViewModel.ErrorMessages.Add(ex.Message);
+            }
 
             //get from database and bind to response
             userSignupResponseViewModel.Name = userSignupRequestViewModel.Name;
