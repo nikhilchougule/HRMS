@@ -10,11 +10,7 @@ import { Router } from '@angular/router';
 import { CustomizerService } from '../../customizer/customizer.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { DialogComponent } from '../../common/dialog/dialog.component';
-
-class UserSigninRequest {
-  public email?: string;
-  public password?: string;
-}
+import { UserSigninRequest, UserSigninResponse } from '../../models/authentication.model'
 
 @Component({
   selector: 'app-sign-in',
@@ -57,8 +53,8 @@ export class SigninComponent {
       //this.router.navigate(['/']);
       let userSubmitForm = this.authForm.value;
       let errorMessages: Array<String> = [];
-      let signInRequest = Object.assign(new UserSigninRequest(), userSubmitForm)
-      console.log('form object' + JSON.stringify(signInRequest));
+      let signInRequest = Object.assign(new UserSigninRequest(userSubmitForm.name, userSubmitForm.password), userSubmitForm)
+      console.log('sign in form object' + JSON.stringify(signInRequest));
 
       let returnFromService = this.authenticationService.signInUserObservable(signInRequest)
         .subscribe(response => {
