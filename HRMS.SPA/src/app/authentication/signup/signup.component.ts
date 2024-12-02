@@ -11,17 +11,7 @@ import { CustomizerService } from '../../customizer/customizer.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { DialogComponent } from '../../common/dialog/dialog.component';
 import { Observable } from 'rxjs';
-
-
-class UserSignupRequest {
-  public Name?: string;
-  public Email?: string;
-  public MobileNumber?: string;
-  public Password?: string;
-  public Administrator?: boolean;
-  public Employee?: boolean;
-  public HR?: boolean;
-}
+import { UserSignupRequest, UserSignupResponse } from '../../models/authentication.model'
 
 @Component({
   selector: 'app-sign-up',
@@ -71,7 +61,9 @@ export class SignupComponent {
     if (this.authForm.valid) {
       //this.router.navigate(['/']);
       let userSubmitForm = this.authForm.value;
-      let signUpRequest = Object.assign(new UserSignupRequest(), userSubmitForm)
+      let signUpRequest = Object.assign(new UserSignupRequest(userSubmitForm.name, userSubmitForm.email, userSubmitForm.mobilenumber, userSubmitForm.password, userSubmitForm.administrator, userSubmitForm.employee, userSubmitForm.hr), userSubmitForm)
+
+      console.log('form object signup' + JSON.stringify(signUpRequest));
 
       let returnFromService = this.authenticationService.signUpUserObservable(signUpRequest)
         .subscribe(response => {

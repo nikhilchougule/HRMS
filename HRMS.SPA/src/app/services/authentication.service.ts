@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
-
+import { UserSigninRequest, UserSigninResponse } from '../models/authentication.model'
+import { UserSignupRequest, UserSignupResponse } from '../models/authentication.model'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,69 +16,18 @@ const httpOptions = {
   })
 };
 
+//Classes Start
+
 //classes UserSignUp
- class UserSignupRequest {
-  public Name?: string;
-  public Email?: string;
-  public MobileNumber?: string;
-  public Password?: string;
-  public Administrator?: boolean;
-  public Employee?: boolean;
-  public HR?: boolean;
 
-  public constructor(Name: string, Email: string, MobileNumber: string, Password: string, Administrator: boolean, Employee: boolean, HR: boolean) {
-    this.Name = Name;
-    this.Email = Email;
-    this.MobileNumber = MobileNumber;
-    this.Password = Password;
-    this.Administrator = Administrator;
-    this.Employee = Employee;
-    this.HR = HR;
-  }
-}
-
- class UserSignupResponse {
-  public Name?: string;
-  public Email?: string;
-  public MobileNumber?: string;
-  public IsError?: boolean;
-  public ErrorMessages?: string[];
-
-  public constructor(Name: string, Email: string, MobileNumber: string, IsError: boolean, ErrorMessages: string[]) {
-    this.Name = Name;
-    this.Email = Email;
-    this.MobileNumber = MobileNumber;
-    this.IsError = IsError;
-    this.ErrorMessages = ErrorMessages;
-  }
-}
-//Classess UserSignUp End
+//Classes UserSignUp End
 
 //Classes UserSignIn
-class UserSigninRequest {
-  public Email?: string;
-  public Password?: string;
 
-  public constructor(Email: string, Password: string) {
-      this.Email = Email,
-      this.Password = Password
-  }
-}
 
-class UserSigninResponse {
-  public Name?: string;
-  public Email?: string;
-  public Password?: string;
-  public Mobilenumber?: string;
-  public JwtToken?: string;
-  public Roles?: Array<string> = [];
-  public IsError?: boolean;
-  public IsValid?: boolean;
-  public ErrorMessages?: Array<string> = []
-}
 //Classes UserSignIn End
 
-//Classess End
+//Classes End
 
 @Injectable({
   providedIn: 'root'
