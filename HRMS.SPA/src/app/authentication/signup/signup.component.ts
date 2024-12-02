@@ -13,28 +13,14 @@ import { DialogComponent } from '../../common/dialog/dialog.component';
 import { Observable } from 'rxjs';
 
 
-class UserSignupResponse {
-  public name?: string;
-  public email?: string;
-  public mobilenumber?: string;
-  public isError?: boolean;
-
-  public constructor(name: string, email: string, mobilenumber: string, isError: boolean) {
-    this.name = name;
-    this.email = email;
-    this.mobilenumber = mobilenumber;
-    this.isError = isError;
-  }
-}
-
 class UserSignupRequest {
-  public name?: string;
-  public email?: string;
-  public mobilenumber?: string;
-  public password?: string;
-  public administrator?: boolean;
-  public employee?: boolean;
-  public hr?: boolean;
+  public Name?: string;
+  public Email?: string;
+  public MobileNumber?: string;
+  public Password?: string;
+  public Administrator?: boolean;
+  public Employee?: boolean;
+  public HR?: boolean;
 }
 
 @Component({
@@ -85,15 +71,14 @@ export class SignupComponent {
     if (this.authForm.valid) {
       //this.router.navigate(['/']);
       let userSubmitForm = this.authForm.value;
-      let errorMessages: Array<String> = [];
       let signUpRequest = Object.assign(new UserSignupRequest(), userSubmitForm)
 
       let returnFromService = this.authenticationService.signUpUserObservable(signUpRequest)
         .subscribe(response => {
-          if (response.isError == true) {
-            console.log('error flag is true. raise dialog with messages' + response.errorMessages);
-            this.dialog.openDialog(response.errorMessages);
-          } else if (response.isError == false) {
+          if (response.IsError == true) {
+            console.log('error flag is true. raise dialog with messages' + response.ErrorMessages);
+            this.dialog.openDialog(response.ErrorMessages);
+          } else if (response.IsError == false) {
             this.dialog.openDialog(["Your Account was successfully created. Please login to continue !"])
           }
         });

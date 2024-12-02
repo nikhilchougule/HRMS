@@ -79,15 +79,30 @@ namespace HRMS.Business.Implementation
         UserSigninResponseViewModel IAuthenticationBusiness.SigninUser(AuthenticationViewModel.UserSigninRequestViewModel userSigninRequestViewModel)
         {
             UserSigninResponseViewModel userSigninResponseViewModel = _authRepository.GetUserForSignin(userSigninRequestViewModel);
-            if (userSigninResponseViewModel.IsValid! == false || !PasswordHasher.VerifyPasswordHash(userSigninRequestViewModel.Password!, userSigninResponseViewModel.PasswordHash!, userSigninResponseViewModel.PasswordSalt!))
+
+            if(userSigninResponseViewModel.Email == null)
             {
                 userSigninResponseViewModel.IsValid = false;
-                userSigninResponseViewModel.ErrorMessages!.Add("Invalid User. Please contact HR team !");
+                userSigninResponseViewModel.IsError = true;
+                userSigninResponseViewModel.ErrorMessages!.Add("User Email not found. Please contact HR team !");
             }
-            else
+            else if (userSigninResponseViewModel.IsValid! == false || !PasswordHasher.VerifyPasswordHash(userSigninRequestViewModel.Password!, userSigninResponseViewModel.PasswordHash!, userSigninResponseViewModel.PasswordSalt!))
+            {
+                userSigninResponseViewModel.IsValid = false;
+                userSigninResponseViewModel.IsError = true;
+                userSigninResponseViewModel.ErrorMessages!.Add("Invalid User Email or Password. Please contact HR team !");
+            }
+            else if(userSigninResponseViewModel.IsValid! == true || PasswordHasher.VerifyPasswordHash(userSigninRequestViewModel.Password!, userSigninResponseViewModel.PasswordHash!, userSigninResponseViewModel.PasswordSalt!))
             {
                 userSigninResponseViewModel.IsValid = true;
             }
+            else
+            {
+                userSigninResponseViewModel.IsValid = false;
+                userSigninResponseViewModel.IsError = true;
+                userSigninResponseViewModel.ErrorMessages!.Add("Trouble Logging in. Please contact HR team !");
+            }
+
             return userSigninResponseViewModel;
         }
 
