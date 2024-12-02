@@ -70,7 +70,7 @@ namespace HRMS.Business.Implementation
                 else
                 {
                     userSignupResponseViewModel.IsError = true;
-                    userSignupResponseViewModel.ErrorMessages!.Add("User Email already exists. You can continue login !");
+                    userSignupResponseViewModel.ErrorMessages!.Add("Email already exists. You can continue login !");
                 }
             }                   
             return userSignupResponseViewModel;
@@ -84,13 +84,13 @@ namespace HRMS.Business.Implementation
             {
                 userSigninResponseViewModel.IsValid = false;
                 userSigninResponseViewModel.IsError = true;
-                userSigninResponseViewModel.ErrorMessages!.Add("User Email not found. Please contact HR team !");
+                userSigninResponseViewModel.ErrorMessages!.Add("Email not found. Please contact HR team !");
             }
             else if (userSigninResponseViewModel.IsValid! == false || !PasswordHasher.VerifyPasswordHash(userSigninRequestViewModel.Password!, userSigninResponseViewModel.PasswordHash!, userSigninResponseViewModel.PasswordSalt!))
             {
                 userSigninResponseViewModel.IsValid = false;
                 userSigninResponseViewModel.IsError = true;
-                userSigninResponseViewModel.ErrorMessages!.Add("Invalid User Email or Password. Please contact HR team !");
+                userSigninResponseViewModel.ErrorMessages!.Add("Invalid Email or Password. Please contact HR team !");
             }
             else if(userSigninResponseViewModel.IsValid! == true || PasswordHasher.VerifyPasswordHash(userSigninRequestViewModel.Password!, userSigninResponseViewModel.PasswordHash!, userSigninResponseViewModel.PasswordSalt!))
             {
