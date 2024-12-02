@@ -71,7 +71,8 @@ export class SignupComponent {
             console.log('error flag is true. raise dialog with messages' + response.ErrorMessages);
             this.dialog.openDialog(response.ErrorMessages);
           } else if (response.IsError == false) {
-            this.dialog.openDialog(["Your Account was successfully created. Please login to continue !"])
+            this.dialog.openDialog(["Your Account was successfully created. Please login to continue !"]);
+            this.router.navigate(['/']);
           }
         });
     } else {
