@@ -1,3 +1,5 @@
+USE HRMS
+
 SELECT * FROM ExperienceLevel
 SELECT * FROM UserProfile
 SELECT * FROM [Role]
@@ -9,7 +11,7 @@ truncate table [User]
 delete from [User]
 
 --DBCCINDENT 
-
+SELECT * FROM [User]
 SELECT * FROM TestCategory
 SELECT * FROM Test
 SELECT * FROM TestDetail
