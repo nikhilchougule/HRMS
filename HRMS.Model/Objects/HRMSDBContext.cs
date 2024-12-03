@@ -59,12 +59,15 @@ public partial class HRMSDBContext : DbContext
     {
         modelBuilder.Entity<ExperienceLevel>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Experien__3214EC271D130A93");
+            entity.HasKey(e => e.Id).HasName("PK__Experien__3214EC27B9B25105");
         });
 
         modelBuilder.Entity<Notification>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Notifica__3214EC275D8B89E5");
+            entity.HasKey(e => e.Id).HasName("PK__Notifica__3214EC2742920ACF");
+
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.IsActive).HasDefaultValue(false);
 
             entity.HasOne(d => d.NotificationType).WithMany(p => p.InverseNotificationType)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -77,12 +80,12 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<NotificationType>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Notifica__3214EC27BC12BF61");
+            entity.HasKey(e => e.Id).HasName("PK__Notifica__3214EC27191E3DBF");
         });
 
         modelBuilder.Entity<Option>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Option__3214EC27AD36AD1F");
+            entity.HasKey(e => e.Id).HasName("PK__Option__3214EC276249CB12");
 
             entity.HasOne(d => d.Question).WithMany(p => p.Options)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -91,7 +94,7 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<Question>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Question__3214EC274A4B6830");
+            entity.HasKey(e => e.Id).HasName("PK__Question__3214EC27838F950F");
 
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
 
@@ -106,7 +109,7 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<QuestionOption>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Question__3214EC27049A1A38");
+            entity.HasKey(e => e.Id).HasName("PK__Question__3214EC2785300592");
 
             entity.HasOne(d => d.Option).WithMany(p => p.QuestionOptions)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -119,22 +122,22 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<QuestionType>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Question__3214EC27A3F0D120");
+            entity.HasKey(e => e.Id).HasName("PK__Question__3214EC27F74099B4");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Role__3214EC27933C4572");
+            entity.HasKey(e => e.Id).HasName("PK__Role__3214EC2735782C97");
         });
 
         modelBuilder.Entity<Skill>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Skill__3214EC279CF48668");
+            entity.HasKey(e => e.Id).HasName("PK__Skill__3214EC273B73E92C");
         });
 
         modelBuilder.Entity<Test>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Test__3214EC2746B89D80");
+            entity.HasKey(e => e.Id).HasName("PK__Test__3214EC2744E70791");
 
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
 
@@ -149,12 +152,12 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<TestCategory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TestCate__3214EC27FADD1598");
+            entity.HasKey(e => e.Id).HasName("PK__TestCate__3214EC2765D1F572");
         });
 
         modelBuilder.Entity<TestDetail>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TestDeta__3214EC2773F83814");
+            entity.HasKey(e => e.Id).HasName("PK__TestDeta__3214EC274FE769A0");
 
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.Score).HasDefaultValue(0.0);
@@ -175,7 +178,7 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<TestDetailQuestionOption>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TestDeta__3214EC27F02625EB");
+            entity.HasKey(e => e.Id).HasName("PK__TestDeta__3214EC2724ABE472");
 
             entity.Property(e => e.OptionId).HasDefaultValue(0);
 
@@ -192,12 +195,12 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<TestResult>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TestResu__3214EC273458CCE9");
+            entity.HasKey(e => e.Id).HasName("PK__TestResu__3214EC2770D1CE84");
         });
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__User__3214EC275CDAD028");
+            entity.HasKey(e => e.Id).HasName("PK__User__3214EC27B01BD93F");
 
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.IsActive).HasDefaultValue(false);
@@ -206,7 +209,7 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<UserProfile>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UserProf__3214EC276E5441A5");
+            entity.HasKey(e => e.Id).HasName("PK__UserProf__3214EC2792569B2C");
 
             entity.HasOne(d => d.ExperienceLevel).WithMany(p => p.UserProfiles).HasConstraintName("FK_UserProfile_ExperienceLevel");
 
@@ -217,7 +220,7 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<UserRole>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UserRole__3214EC2713C379DA");
+            entity.HasKey(e => e.Id).HasName("PK__UserRole__3214EC2782933246");
 
             entity.HasOne(d => d.Role).WithMany(p => p.UserRoles)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -230,7 +233,7 @@ public partial class HRMSDBContext : DbContext
 
         modelBuilder.Entity<UserSkill>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__UserSkil__3214EC27FCD92BE5");
+            entity.HasKey(e => e.Id).HasName("PK__UserSkil__3214EC27BA72526C");
 
             entity.HasOne(d => d.Skill).WithMany(p => p.UserSkills)
                 .OnDelete(DeleteBehavior.ClientSetNull)
