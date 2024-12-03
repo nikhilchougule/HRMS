@@ -12,6 +12,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { DialogComponent } from '../../common/dialog/dialog.component';
 import { UserSigninRequest, UserSigninResponse } from '../../models/authentication.model'
 import { APIToken } from '../../api.config';
+import { exit } from 'process';
 
 @Component({
   selector: 'app-sign-in',
@@ -62,15 +63,44 @@ export class SigninComponent {
             this.dialog.openDialog(response.ErrorMessages);
           } else
             if (response.IsError == false || response.IsValid == true) {
-            //new APIToken(response.JwtToken!);
-            localStorage.setItem('JwtToken', 'bearer '+ response.JwtToken )
-            this.dialog.openDialog(['Login Successfull. We will redirect you to the dashboard !']);
-            //this.router.navigate(['/']);
-          }
+              let landingPageURL = getLandingPage(response.Roles!);
+              console.log('landing page url return' + landingPageURL);
+              if (landingPageURL == null) {
+                this.dialog.openDialog(['Trouble logging in with Role. Please contact HR team !']);
+              } else {
+                localStorage.setItem('JwtToken', 'bearer ' + response.JwtToken);
+                //this.router.navigate([landingPageURL]);
+
+                this.router.navigate(['/dashboard/hiree']);
+              }
+            }
         });
     } else {
       console.log('Your Login Form is invalid. Please review it before continuing Login !');
     }
   }
+}
 
+function getLandingPage(roles: Array<string>) {
+
+  let LandingPageOrder: Array<string> = [];
+  console.log('roles' + roles);
+
+  if (roles.includes("Administrator")) {
+    LandingPageOrder.push('/dashboard/admin');
+  } else if (roles.includes("HR")) {
+    LandingPageOrder.push('/dashboard/hr');
+  } else if (roles.includes("Employee")) {
+    LandingPageOrder.push('/dashboard/employee');
+  } else if (roles.includes("Hiree")) {
+    LandingPageOrder.push('/dashboard/hiree');
+  }
+  
+  if (LandingPageOrder.length == 0) {
+    return null
+  } else {
+    return LandingPageOrder[0];
+  }
+
+  
 }
