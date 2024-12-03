@@ -21,6 +21,8 @@
 
 --USE HRMS
 
+--Question-ExperienceLevel 1-Many
+--Question-Skill 1-Many
 --------------------------------------------------------
 GO
 CREATE TABLE [TestResult] 
@@ -237,7 +239,10 @@ CREATE TABLE [Notification]
 (
 ID INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 [NotificationTypeID] INT NOT NULL,
-[UserID] INT NOT NULL
+[UserID] INT NOT NULL,
+[CreatedDate] DATETIME DEFAULT GETDATE(),
+[IsActive] BIT DEFAULT 0,
+[URL] NVARCHAR(200) NULL
 )
 --[NotificationTypeID.Notification.ID] [ UserID.User.ID]
 

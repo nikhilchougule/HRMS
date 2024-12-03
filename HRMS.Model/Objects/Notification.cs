@@ -19,6 +19,15 @@ public partial class Notification
     [Column("UserID")]
     public int UserId { get; set; }
 
+    [Column(TypeName = "datetime")]
+    public DateTime? CreatedDate { get; set; }
+
+    public bool? IsActive { get; set; }
+
+    [Column("URL")]
+    [StringLength(200)]
+    public string? Url { get; set; }
+
     [InverseProperty("NotificationType")]
     public virtual ICollection<Notification> InverseNotificationType { get; set; } = new List<Notification>();
 

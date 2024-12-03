@@ -9,9 +9,12 @@ select * from [User]
 truncate table [User]
 
 delete from [User]
+delete from [UserRole]
 
 --DBCCINDENT 
+SELECT * FROM [Skill]
 SELECT * FROM [User] ORDER BY CreatedDate DESC
+SELECT * FROM [UserRole]
 SELECT * FROM TestCategory
 SELECT * FROM Test
 SELECT * FROM TestDetail
