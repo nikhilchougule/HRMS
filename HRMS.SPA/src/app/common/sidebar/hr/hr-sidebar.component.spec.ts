@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HrSidebarComponent } from './hr-sidebar.component';
+import { HRSidebarComponent } from './hr-sidebar.component';
 
-describe('HrSidebarComponent', () => {
-  let component: HrSidebarComponent;
-  let fixture: ComponentFixture<HrSidebarComponent>;
+describe('HRSidebarComponent', () => {
+  let component: HRSidebarComponent;
+  let fixture: ComponentFixture<HRSidebarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HrSidebarComponent]
+      declarations: [HRSidebarComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(HrSidebarComponent);
+    fixture = TestBed.createComponent(HRSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
