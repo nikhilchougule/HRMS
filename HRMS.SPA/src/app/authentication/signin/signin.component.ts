@@ -52,7 +52,6 @@ export class SigninComponent {
 
   onSubmit() {
     if (this.authForm.valid) {
-      //this.router.navigate(['/']);
       let userSubmitForm = this.authForm.value;
       let errorMessages: Array<String> = [];
       let signInRequest = Object.assign(new UserSigninRequest(userSubmitForm.name, userSubmitForm.password), userSubmitForm)
@@ -63,15 +62,12 @@ export class SigninComponent {
             this.dialog.openDialog(response.ErrorMessages);
           } else
             if (response.IsError == false || response.IsValid == true) {
-              let landingPageURL = getLandingPage(response.Roles!);
-              console.log('landing page url return' + landingPageURL);
+              let landingPageURL = getLandingPageURL(response.Roles!);
               if (landingPageURL == null) {
                 this.dialog.openDialog(['Trouble logging in with Role. Please contact HR team !']);
               } else {
                 localStorage.setItem('JwtToken', 'bearer ' + response.JwtToken);
-                //this.router.navigate([landingPageURL]);
-
-                this.router.navigate(['/dashboard/hiree']);
+                this.router.navigate([landingPageURL]);
               }
             }
         });
@@ -81,10 +77,8 @@ export class SigninComponent {
   }
 }
 
-function getLandingPage(roles: Array<string>) {
-
+function getLandingPageURL(roles: Array<string>) {
   let LandingPageOrder: Array<string> = [];
-  console.log('roles' + roles);
 
   if (roles.includes("Administrator")) {
     LandingPageOrder.push('/dashboard/admin');
@@ -95,12 +89,10 @@ function getLandingPage(roles: Array<string>) {
   } else if (roles.includes("Hiree")) {
     LandingPageOrder.push('/dashboard/hiree');
   }
-  
+
   if (LandingPageOrder.length == 0) {
     return null
   } else {
     return LandingPageOrder[0];
   }
-
-  
 }
