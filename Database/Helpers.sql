@@ -1,15 +1,13 @@
 USE HRMS
 
-SELECT * FROM ExperienceLevel
-SELECT * FROM UserProfile
-SELECT * FROM [Role]
-
-select * from [User]
+--Further Design
+--Question-ExperienceLevel 1-Many
+--Question-Skill 1-Many
 
 truncate table [User]
-
-delete from [User]
+truncate table [UserRole]
 delete from [UserRole]
+delete from [User]
 
 --DBCCINDENT 
 SELECT * FROM [Skill]
@@ -25,5 +23,3 @@ SELECT * FROM [Madiba_Onboarding].[dbo].TestCategory
 SELECT * FROM [Madiba_Onboarding].[dbo].TestMaster ORDER BY CreatedDate DESC
 SELECT * FROM [Madiba_Onboarding].[dbo].TestDetails
 SELECT * FROM [Madiba_Onboarding].[dbo].TestMasterTestCategories
-
-select * from [UserRole]

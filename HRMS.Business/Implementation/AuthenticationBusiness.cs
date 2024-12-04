@@ -86,6 +86,12 @@ namespace HRMS.Business.Implementation
                 userSigninResponseViewModel.IsError = true;
                 userSigninResponseViewModel.ErrorMessages!.Add("Email not found. Please contact HR team !");
             }
+            else if (userSigninResponseViewModel.IsApproved == false || userSigninResponseViewModel.IsActive == false)
+            {
+                userSigninResponseViewModel.IsValid = false;
+                userSigninResponseViewModel.IsError = true;
+                userSigninResponseViewModel.ErrorMessages!.Add("Your Account is either Locked or not Approved. Please contact HR team !");
+            }
             else if (userSigninResponseViewModel.IsValid! == false || !PasswordHasher.VerifyPasswordHash(userSigninRequestViewModel.Password!, userSigninResponseViewModel.PasswordHash!, userSigninResponseViewModel.PasswordSalt!))
             {
                 userSigninResponseViewModel.IsValid = false;
@@ -95,7 +101,7 @@ namespace HRMS.Business.Implementation
             else if(userSigninResponseViewModel.IsValid! == true || PasswordHasher.VerifyPasswordHash(userSigninRequestViewModel.Password!, userSigninResponseViewModel.PasswordHash!, userSigninResponseViewModel.PasswordSalt!))
             {
                 userSigninResponseViewModel.IsValid = true;
-            }
+            }         
             else
             {
                 userSigninResponseViewModel.IsValid = false;

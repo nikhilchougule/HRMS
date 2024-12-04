@@ -18,6 +18,7 @@ namespace HRMS.API.Controllers
     {
         private IConfiguration _config;
         private IAuthenticationBusiness _authBusiness;
+        public static string  token;
 
         public AuthenticationController(IConfiguration config, IAuthenticationBusiness auth)
         {
@@ -44,7 +45,7 @@ namespace HRMS.API.Controllers
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
                 var Sectoken = new JwtSecurityToken(_config["Jwt:Issuer"], _config["Jwt:Issuer"], null, expires: DateTime.Now.AddMinutes(120), signingCredentials: credentials);
-                var token = new JwtSecurityTokenHandler().WriteToken(Sectoken);
+                token = new JwtSecurityTokenHandler().WriteToken(Sectoken);
                 userSigninResponseViewModel.JwtToken = token;
                 userSigninResponseViewModel.PasswordHash = null;
                 userSigninResponseViewModel.PasswordSalt = null;
@@ -59,11 +60,12 @@ namespace HRMS.API.Controllers
         }
 
         [HttpGet]
-        [Route("CheckAuthorization")]
-        [Authorize]
-        public IActionResult CheckAuthorize(string userEmail)
+        [Route("GetToken")]
+        public IActionResult GetToken()
         {
-            return Ok("AuthorizedSuccessfull");
+            UserSigninResponseViewModel userSigninResponseViewModel = new UserSigninResponseViewModel();
+            userSigninResponseViewModel.JwtToken = token;
+            return Ok(userSigninResponseViewModel);
         }
 
     }

@@ -114,6 +114,8 @@ namespace HRMS.Repository.Implementation
                 userSigninResponseViewModel.MobileNumber = user.MobileNumber;
                 userSigninResponseViewModel.PasswordHash = user.PasswordHash;
                 userSigninResponseViewModel.PasswordSalt = user.PasswordSalt;
+                userSigninResponseViewModel.IsActive = user.IsActive;
+                userSigninResponseViewModel.IsApproved = user.IsApproved;
 
                 List<string> userRoles = _context.UserRoles.Where(x => x.UserId == user.Id!).Select(x => x.Role.Name).ToList();
                 userSigninResponseViewModel.Roles = userRoles;

@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -6,6 +5,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class TotalTestsService {
+
   private isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
@@ -23,7 +23,7 @@ export class TotalTestsService {
           series: [
             {
               type: "rangeArea",
-              name: "Test Category 1",
+              name: "Orders",
               data: [
                 {
                   x: "Jan",
@@ -99,7 +99,7 @@ export class TotalTestsService {
             },
             {
               type: "line",
-              name: "Test Category 2",
+              name: "Orders",
               data: [
                 {
                   x: "Jan",
@@ -273,4 +273,5 @@ export class TotalTestsService {
       }
     }
   }
+
 }
