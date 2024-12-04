@@ -53,6 +53,8 @@ namespace HRMS.ViewModel.Authentication
             public string? JwtToken { get; set; }
             public Boolean IsValid { get; set; }
             public List<string>? Roles { get; set; } = new List<String>();
+            public Boolean? IsActive { get; set; }
+            public Boolean? IsApproved { get; set; }
         }
 
     }

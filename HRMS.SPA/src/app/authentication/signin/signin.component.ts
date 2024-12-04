@@ -66,7 +66,7 @@ export class SigninComponent {
               if (landingPageURL == null) {
                 this.dialog.openDialog(['Trouble logging in with Role. Please contact HR team !']);
               } else {
-                localStorage.setItem('JwtToken', 'bearer ' + response.JwtToken);
+                localStorage.setItem('JwtToken', response.JwtToken!);
                 this.router.navigate([landingPageURL]);
               }
             }
