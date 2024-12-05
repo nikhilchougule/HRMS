@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { CustomizerService } from '../../customizer/customizer.service';
 import { CommonModule, DOCUMENT } from '@angular/common';
+import { LocalStorageService } from '../../services/localstorage.service';
 
 @Component({
   selector: 'app-logout',
@@ -18,14 +19,14 @@ export class LogoutComponent {
 
   constructor(
     public themeService: CustomizerService,
-    @Inject(DOCUMENT) private document: Document
+    public localStorageService: LocalStorageService
   ) {
-    const localStorage = document.defaultView?.localStorage!;
-
     this.themeService.isToggled$.subscribe(isToggled => {
       this.isToggled = isToggled;
     });
-    localStorage.clear();
+    console.log('in logout jwt token' + localStorageService.getItem('JwtToken'));
+    localStorageService.clear();
+    console.log('in logout jwt token after clear()' + localStorageService.getItem('JwtToken'));
   }
 
 }

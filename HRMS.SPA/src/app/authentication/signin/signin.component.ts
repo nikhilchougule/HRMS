@@ -13,6 +13,7 @@ import { DialogComponent } from '../../common/dialog/dialog.component';
 import { UserSigninRequest, UserSigninResponse } from '../../models/authentication.model'
 import { APIToken } from '../../api.config';
 import { exit } from 'process';
+import { LocalStorageService } from '../../services/localstorage.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -33,7 +34,8 @@ export class SigninComponent {
     private router: Router,
     public themeService: CustomizerService,
     public authenticationService: AuthenticationService,
-    public dialog: DialogComponent
+    public dialog: DialogComponent,
+    public localStorageService: LocalStorageService
   ) {
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -66,7 +68,7 @@ export class SigninComponent {
               if (landingPageURL == null) {
                 this.dialog.openDialog(['Trouble logging in with Role. Please contact HR team !']);
               } else {
-                localStorage.setItem('JwtToken', response.JwtToken!);
+                this.localStorageService.setItem('JwtToken', response.JwtToken!);
                 this.router.navigate([landingPageURL]);
               }
             }

@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, InjectionToken } from '@angular/core';
 import { CanActivate, CanActivateChild, CanDeactivate, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
 import { request } from 'express';
 import { catchError } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { LocalStorageService } from './services/localstorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +18,15 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     _authService: any;
     _storageService: any;
 
-  constructor(private router: Router, private authService: AuthenticationService) { }
+  constructor(private router: Router, private authService: AuthenticationService,
+    private localStorageService: LocalStorageService) { }
+  
 
   canActivate(): boolean {
 
-    this.clientToken = localStorage.getItem('JwtToken');
+    console.log('in auth guard jwt token' + this.localStorageService.getItem('JwtToken'));
+
+    this.clientToken = this.localStorageService.getItem('JwtToken');
 
     if (this.clientToken) {
      
