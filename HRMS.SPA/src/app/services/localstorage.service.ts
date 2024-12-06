@@ -12,30 +12,30 @@ export class LocalStorageService {
   }
 
   setItem(key: string, value: any) {
-    this.localStorage2.setItem(key, value);
+    localStorage.setItem(key, value);
   }
 
   getItem(key: string): any {
-    return this.localStorage2.getItem(key);
+    return localStorage.getItem(key)!;
   }
 
   clear(): any {
-    this.localStorage2.clear();
+    localStorage.clear();
   }
 
   setBool(key: string, value: boolean) {
-    this.localStorage2.setItem(key, String(value));
+    localStorage.setItem(key, String(value));
   }
 
   getBool(key: string): boolean {
-    return this.localStorage2.getItem(key) === 'true';
+    return localStorage.getItem(key) === 'true';
   }
 
   setObject(key: string, value: object) {
-    this.localStorage2.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
   getObject(key: string): object {
-    return JSON.parse(this.localStorage2.getItem(key)!);
+    return JSON.parse(localStorage.getItem(key)!);
   }
 }
