@@ -43,7 +43,7 @@ namespace HRMS.Business.Implementation
         UserSignupResponseViewModel IAuthenticationBusiness.SignupUser(AuthenticationViewModel.UserSignupRequestViewModel userSignupRequestViewModel)
         {
             UserSignupResponseViewModel userSignupResponseViewModel = new UserSignupResponseViewModel();
-            userSignupResponseViewModel = ValidateRoles(userSignupRequestViewModel);
+            //userSignupResponseViewModel = ValidateRoles(userSignupRequestViewModel);
 
             if (!userSignupResponseViewModel.IsError)
             {
@@ -65,7 +65,7 @@ namespace HRMS.Business.Implementation
                     userSignupResponseViewModel.Email = userSignupResponseRegisterViewModel.Email;
                     userSignupResponseViewModel.MobileNumber = userSignupResponseRegisterViewModel.MobileNumber;
 
-                     _authRepository.RegisterUserRoles(userSignupResponseViewModel);
+                     //_authRepository.RegisterUserRoles(userSignupResponseViewModel);
                 }
                 else
                 {
