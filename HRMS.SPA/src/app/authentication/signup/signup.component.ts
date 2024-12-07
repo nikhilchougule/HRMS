@@ -39,9 +39,9 @@ export class SignupComponent {
       email: ['', [Validators.required, Validators.email]],
       mobilenumber: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      administrator: false,
-      employee: true,
-      hr: false,
+      //administrator: false,
+      //employee: true,
+      //hr: false,
     });
 
     this.themeService.isToggled$.subscribe(isToggled => {
