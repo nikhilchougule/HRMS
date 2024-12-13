@@ -65,12 +65,19 @@ export class SigninComponent {
           } else
             if (response.IsError == false || response.IsValid == true) {
               let landingPageURL = getLandingPageURL(response.Roles!);
-              if (landingPageURL == null) {
-                this.dialog.openDialog(['Trouble logging in with Role. Please contact HR team !']);
-              } else {
+
                 this.localStorageService.setItem('JwtToken', response.JwtToken!);
-                this.router.navigate([landingPageURL]);
-              }
+              this.router.navigate(['/dashboard/admin']);
+
+              //Validate Roles Code. Uncomment after roles considered in localStorage
+              //if (landingPageURL == null) {
+              //  this.dialog.openDialog(['Trouble logging in with Role. Please contact HR team !']);
+              //} else {
+              //  this.localStorageService.setItem('JwtToken', response.JwtToken!);
+              //  this.router.navigate([landingPageURL]);
+              //}
+              //Validate Roles Code.
+
             }
         });
     } else {

@@ -73,10 +73,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NewUsersComponent } from './configuration/user/new-users/new-users.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NewUsersComponent
   ],
   imports: [
     BrowserModule,
