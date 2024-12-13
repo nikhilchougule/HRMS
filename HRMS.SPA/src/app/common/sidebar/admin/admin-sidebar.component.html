@@ -51,11 +51,24 @@
                   Test Category
                 </a>
               </li>
+              <li class="sidemenu-item">
+                <a routerLink="/configuration/users" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                  Configure All Users
+                </a>
+              </li>
             </ul>
           </mat-expansion-panel>
           <span class="sub-title text-body">
             USERS
           </span>
+          <a routerLink="/users/newusers" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="material-symbols-outlined">
+              ballot
+            </i>
+            <span class="title">
+              New Users
+            </span>
+          </a>
           <a routerLink="/to-do-list" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <i class="material-symbols-outlined">
               ballot
@@ -80,11 +93,11 @@
               Hiree
             </span>
           </a>
-          
+
           <span class="sub-title text-body">
             APTITUDE TEST
           </span>
-          <mat-expansion-panel  [expanded]="panelOpenState"  (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+          <mat-expansion-panel [expanded]="panelOpenState" (opened)="panelOpenState = true" (closed)="panelOpenState = true">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <i class="material-symbols-outlined">
@@ -115,7 +128,7 @@
                 </a>
               </li>
             </ul>
-          </mat-expansion-panel>                    
+          </mat-expansion-panel>
           <a routerLink="/starter" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <i class="material-symbols-outlined">
               star_border
@@ -124,7 +137,7 @@
               Starter
             </span>
           </a>
-          
+
           <span class="sub-title text-body">
             OTHERS
           </span>
@@ -159,23 +172,23 @@
                 </a>
               </li>
               <!--<li class="sidemenu-item">
-                <a routerLink="/settings/connections" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                  Connections
-                </a>
-              </li>
-              <li class="sidemenu-item">
-                <a routerLink="/settings/privacy-policy" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                  Privacy Policy
-                </a>
-              </li>
-              <li class="sidemenu-item">
-                <a routerLink="/settings/terms-conditions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                  Terms & Conditions
-                </a>
-              </li>-->
+        <a routerLink="/settings/connections" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+          Connections
+        </a>
+      </li>
+      <li class="sidemenu-item">
+        <a routerLink="/settings/privacy-policy" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+          Privacy Policy
+        </a>
+      </li>
+      <li class="sidemenu-item">
+        <a routerLink="/settings/terms-conditions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+          Terms & Conditions
+        </a>
+      </li>-->
             </ul>
           </mat-expansion-panel>
-          
+
           <a routerLink="/authentication/logout" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <i class="material-symbols-outlined">
               logout
