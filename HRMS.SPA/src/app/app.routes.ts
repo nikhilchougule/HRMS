@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
-import { AdminAuthGuard } from './auth.guard';
+import { CommonAuthGuard } from './commonauth.guard';
+import { AdminAuthGuard } from './adminauth.guard';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
@@ -24,10 +24,10 @@ export const routes: Routes = [
       { path: 'logout', component: LogoutComponent }
     ]
   },
-  { path: 'dashboard/admin', component: AdminComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard/hr', component: HRComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard/employee', component: EmployeeComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard/hiree', component: HireeComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/admin', component: AdminComponent, canActivate: [AdminAuthGuard] },
+  { path: 'dashboard/hr', component: HRComponent, canActivate: [CommonAuthGuard] },
+  { path: 'dashboard/employee', component: EmployeeComponent, canActivate: [CommonAuthGuard] },
+  { path: 'dashboard/hiree', component: HireeComponent, canActivate: [CommonAuthGuard] },
   {
     path: 'users',
     component: NewUsersComponent,
