@@ -15,6 +15,7 @@ delete from [User]
 --DBCCINDENT 
 SELECT * FROM [Skill]
 SELECT * FROM [User] ORDER BY CreatedDate DESC
+SELECT * FROM [Role]
 SELECT * FROM [UserRole]
 SELECT * FROM TestCategory
 SELECT * FROM Test
@@ -27,5 +28,7 @@ SELECT * FROM [Madiba_Onboarding].[dbo].TestMaster ORDER BY CreatedDate DESC
 SELECT * FROM [Madiba_Onboarding].[dbo].TestDetails
 SELECT * FROM [Madiba_Onboarding].[dbo].TestMasterTestCategories
 
+
+--New Users
 
 
