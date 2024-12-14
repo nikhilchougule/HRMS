@@ -10,7 +10,9 @@ import { HireeComponent } from './dashboard/hiree/hiree.component';
 import { HRComponent } from './dashboard/hr/hr.component';
 import { LogoutComponent } from './authentication/logout/logout.component';
 import { UserComponent } from './configuration/user/user.component';
-import { NewUsersComponent } from './configuration/user/new-users/new-users.component';
+import { UserStatusComponent } from './configuration/user/user-status/user-status.component';
+
+//keep singluar format
 
 export const routes: Routes = [
 
@@ -29,10 +31,10 @@ export const routes: Routes = [
   { path: 'dashboard/employee', component: EmployeeComponent, canActivate: [CommonAuthGuard] },
   { path: 'dashboard/hiree', component: HireeComponent, canActivate: [CommonAuthGuard] },
   {
-    path: 'users',
-    component: NewUsersComponent,
+    path: 'user',
+    component: UserStatusComponent,
     children: [
-      { path: 'newusers', component: NewUsersComponent },
+      { path: 'status', component: UserStatusComponent },
     ]
   },
   //{path: '**', component: NotFoundComponent} // This line will remain down from the whole pages component list
