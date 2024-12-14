@@ -1,7 +1,7 @@
 import { Component, Inject, InjectionToken } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { CustomizerService } from '../../customizer/customizer.service';
+import { CustomizerService } from '../../services/customizer.service';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { LocalStorageService } from '../../services/localstorage.service';
 

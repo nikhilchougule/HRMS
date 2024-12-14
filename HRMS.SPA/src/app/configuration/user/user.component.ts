@@ -9,7 +9,7 @@ import { UserAdminComponent } from './user-admin/user-admin.component';
 import { UserEmployeeComponent } from './user-employee/user-employee.component';
 import { UserHireeComponent } from './user-hiree/user-hiree.component';
 import { UserHrComponent } from './user-hr/user-hr.component';
-import { CustomizerService } from '../../customizer/customizer.service';
+import { CustomizerService } from '../../services/customizer.service';
 import { AdminSidebarComponent } from '../../common/sidebar/admin/admin-sidebar.component';
 
 @Component({
