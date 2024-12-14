@@ -5,8 +5,8 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { CustomizerComponent } from './customizer/customizer.component';
-import { CustomizerService } from './customizer/customizer.service';
-import { ToggleService } from './common/sidebar/toggle.service';
+import { CustomizerService } from './services/customizer.service';
+import { ToggleService } from './services//toggle.service';
 
 @Component({
   selector: 'app-root',

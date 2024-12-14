@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CustomizerService } from './customizer.service';
+import { CustomizerService } from '../services/customizer.service';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';

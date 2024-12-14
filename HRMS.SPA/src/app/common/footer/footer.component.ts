@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CustomizerService } from '../../customizer/customizer.service';
+import { CustomizerService } from '../../services/customizer.service';
 
 @Component({
   selector: 'app-footer',

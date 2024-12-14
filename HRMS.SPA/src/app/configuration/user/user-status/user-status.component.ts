@@ -7,7 +7,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
-import { CustomizerService } from '../../../customizer/customizer.service';
+import { CustomizerService } from '../../../services/customizer.service';
 import { AdminSidebarComponent } from '../../../common/sidebar/admin/admin-sidebar.component';
 
 @Component({

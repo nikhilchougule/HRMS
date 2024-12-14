@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
-import { ToggleService } from './toggle.service';
+import { ToggleService } from '../../services/toggle.service';
 import { NgClass } from '@angular/common';
-import { CustomizerService } from '../../customizer/customizer.service';
+import { CustomizerService } from '../../services/customizer.service';
 
 @Component({
   selector: 'app-sidebar',

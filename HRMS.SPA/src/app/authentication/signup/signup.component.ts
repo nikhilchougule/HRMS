@@ -7,7 +7,7 @@ import { Params, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-import { CustomizerService } from '../../customizer/customizer.service';
+import { CustomizerService } from '../../services/customizer.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { DialogComponent } from '../../common/dialog/dialog.component';
 import { Observable } from 'rxjs';
