@@ -1,0 +1,15 @@
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\bin\Release\net9.0\HRMS.Model.deps.json
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\bin\Release\net9.0\HRMS.Model.runtimeconfig.json
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\bin\Release\net9.0\HRMS.Model.dll
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\bin\Release\net9.0\HRMS.Model.pdb
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\HRMS.Model.csproj.AssemblyReference.cache
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\HRMS.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\HRMS.Model.AssemblyInfoInputs.cache
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\HRMS.Model.AssemblyInfo.cs
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\HRMS.Model.csproj.CoreCompileInputs.cache
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\HRMS.Model.sourcelink.json
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\HRMS.Model.dll
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\refint\HRMS.Model.dll
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\HRMS.Model.pdb
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\HRMS.Model.genruntimeconfig.cache
+C:\Users\nikhi\source\repos\Devops\HRMS\HRMS.Model\obj\Release\net9.0\ref\HRMS.Model.dll

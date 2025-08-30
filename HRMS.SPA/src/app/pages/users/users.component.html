@@ -1,0 +1,277 @@
+<!-- Listing and total number of counts -->
+<div class="row">
+  <!--<div class="col-sm-6 col-lg-3">
+    <mat-card class="shadow-none p-30 bg-light-primary text-center cursor-pointer rounded"
+              (click)="btnCategoryClick('')">
+      <h3 class="f-s-24 text-primary f-w-600 m-b-4">{{ totalCount }}</h3>
+      <h6 class="text-primary f-w-600 m-0 f-s-16">Total Users</h6>
+    </mat-card>
+  </div>-->
+  <div class="col-sm-6 col-lg-3">
+    <mat-card class="shadow-none p-30 bg-light-warning text-center cursor-pointer rounded"
+              (click)="btnCategoryClick('Administrator')">
+      <h3 class="f-s-24 text-warning m-b-4">
+        {{ countUsersByStatus("Administrator") }}
+      </h3>
+      <h6 class="text-warning f-w-600 m-0 f-s-16">Administrator</h6>
+    </mat-card>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <mat-card class="shadow-none p-30 bg-light-success text-center cursor-pointer rounded"
+              (click)="btnCategoryClick('HR')">
+      <h3 class="f-s-24 text-success m-b-4">
+        {{ countUsersByStatus("HR") }}
+      </h3>
+      <h6 class="text-success f-w-600 m-0 f-s-16">HR</h6>
+    </mat-card>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <mat-card class="shadow-none p-30 bg-light-error text-center cursor-pointer rounded"
+              (click)="btnCategoryClick('Employee')">
+      <h3 class="f-s-24 text-error m-b-4">
+        {{ countUsersByStatus("Employee") }}
+      </h3>
+      <h6 class="text-error f-w-600 m-0 f-s-16">Employee</h6>
+    </mat-card>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <mat-card class="shadow-none p-30 bg-light-primary text-center cursor-pointer rounded"
+              (click)="btnCategoryClick('Applicant')">
+      <h3 class="f-s-24 text-primary m-b-4">
+        {{ countUsersByStatus("Applicant") }}
+      </h3>
+      <h6 class="text-primary f-w-600 m-0 f-s-16">Applicant</h6>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Add and search  -->
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="row justify-content-between gap-16">
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline" class="hide-hint">
+          <input matInput
+                 (keyup)="onKeyup($event)"
+                 placeholder="Search User" />
+
+          <mat-icon matSuffix>
+            <i-tabler name="search" class="icon-20 d-flex m-t-2"></i-tabler>
+          </mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4 d-flex justify-content-end align-items-center">
+        <button mat-flat-button (click)="openDialog('Add', {})">
+          Add User
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- Table -->
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" class="w-100 f-w-500 no-wrap">
+        <!--<ng-container matColumnDef="ID">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">ID</th>
+          <td mat-cell *matCellDef="let element">{{ element.ID }}</td>
+        </ng-container>-->
+
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+            Name
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <h6 class="f-s-15 f-w-500 m-b-4">{{ element.Name }}</h6>
+            <!--<span class="f-s-14 f-w-400 max-text d-block">
+    {{
+    element.Email
+    }}
+  </span>-->
+            <span class="f-s-14 f-w-400 max-text d-block">
+              Mobile Number: {{
+              element.MobileNumber
+              }}
+            </span>
+
+            <!--@if(true){
+  <span class="f-s-14 f-w-400 max-text d-block"
+        [ngClass]="{
+          'bg-light-success': element.IsActive === true || element.IsApproved === true,
+          'bg-light-error': element.IsActive === false || element.IsApproved === false
+        }">
+    Active: {{ element.IsActive }} | Approved: {{ element.IsApproved }}
+  </span>
+  }-->
+            Active:
+            <span class="f-s-12 f-w-500 d-inline-block m-r-8  p-x-4 rounded-pill"
+                  [ngClass]="{
+                    'bg-success': element.IsActive === true,
+                    'bg-error': element.IsActive === false
+                  }">
+              {{ element.IsActive }}
+            </span>
+            <!--Approved:
+            <span class="f-s-12 f-w-500 d-inline-block p-x-4 rounded-pill"
+                  [ngClass]="{
+                    'bg-success': element.IsApproved === true,
+                    'bg-error': element.IsApproved === false
+                  }">
+              {{ element.IsApproved }}
+            </span>-->
+
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Company">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+            Company
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center">
+              <span class="f-w-500 f-s-15">{{ element.UserProfile.Company }}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Designation">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+            Designation
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center">
+              <span class="f-w-500 f-s-15">{{ element.UserProfile.Designation }}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Skills">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+            Skills
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center">
+
+              <table>
+
+                @for (item of element.Skills; track item.Name) {
+                <tr><span class="bg-light-secondary  rounded f-w-600 p-6  f-s-12 ng-star-inserted" style="padding-top: 0px !important; padding-bottom: 2px !important;">{{ item.Name }}  </span></tr>
+                }
+              </table>
+
+            </div>
+          </td>
+        </ng-container>
+
+        <!--<ng-container matColumnDef="MobileNumber">
+        <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+          Mobile Number
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="d-flex align-items-center">-->
+        <!--<img
+          [src]="element.imgSrc"
+          alt="user"
+          width="35"
+          class="rounded-circle m-r-8"
+        />-->
+        <!--<span class="f-w-600 f-s-16">{{ element.MobileNumber }}</span>
+            </div>
+          </td>
+        </ng-container>-->
+        <!--<ng-container matColumnDef="Email">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+            Email
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center">
+              <span class="f-w-600 f-s-16">{{ element.Email }}</span>
+            </div>
+          </td>
+        </ng-container>-->
+        <!--<ng-container matColumnDef="IsActive">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+            Is Active
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center">-->
+        <!--<img
+          [src]="element.imgSrc"
+          alt="user"
+          width="35"
+          class="rounded-circle m-r-8"
+        />-->
+        <!--<span class="f-w-600 f-s-16">{{ element.IsActive }}</span>
+            </div>
+          </td>
+        </ng-container>-->
+        <!--<ng-container matColumnDef="IsApproved">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+            Is Approved
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center">-->
+        <!--<img
+          [src]="element.imgSrc"
+          alt="user"
+          width="35"
+          class="rounded-circle m-r-8"
+        />-->
+        <!--<span class="f-w-600 f-s-16">{{ element.IsApproved }}</span>
+            </div>
+          </td>
+        </ng-container>-->
+
+        <ng-container matColumnDef="Role">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+            Role
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <span class="bg-light f-w-500 p-x-8 p-y-4 rounded-pill f-s-12"
+                  [ngClass]="{
+                'bg-light-warning': element.Role === 'Administrator',
+                'bg-light-success': element.Role === 'HR',
+                'bg-light-error': element.Role === 'Employee',
+                'bg-light-primary': element.Role === 'Applicant',
+                'bg-light-secondary': element.Role === 'No Role Assigned'
+              }">
+              {{ element.Role }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="CreatedDate">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">Created</th>
+          <td mat-cell *matCellDef="let element" class="f-s-15 f-w-500">
+            <!--{{ element.CreatedDate | CreatedDate }}-->
+            {{ element.CreatedDate}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="f-s-16 f-w-600">
+            Action
+          </th>
+          <td mat-cell *matCellDef="let element" class="action-link">
+            <a (click)="openDialog('Update', element)"
+               class="m-r-10 cursor-pointer">
+              <i-tabler name="edit" class="icon-18"></i-tabler>
+            </a>
+            <a (click)="openDialog('Delete', element)"
+               class="m-r-10 cursor-pointer">
+              <i-tabler name="trash" class="icon-18"></i-tabler>
+            </a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons></mat-paginator>
+  </mat-card-content>
+</mat-card>

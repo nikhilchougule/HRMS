@@ -1,0 +1,2 @@
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.SPA\obj\Debug\HRMS.SPA.esproj.CoreCompileInputs.cache
+C:\Users\nikhi\source\repos\HRMS\HRMS.SPA\obj\Debug\HRMS.SPA.esproj.CoreCompileInputs.cache

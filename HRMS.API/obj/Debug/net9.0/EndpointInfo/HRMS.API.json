@@ -1,0 +1,981 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "HRMS.API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/AppConfiguration/Get": {
+      "get": {
+        "tags": [
+          "AppConfiguration"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/GetAllAptitudeTests": {
+      "get": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/GetApplicantAptitudeTests/{applicantID}": {
+      "get": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "parameters": [
+          {
+            "name": "applicantID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/AddAptitudeTest": {
+      "post": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TestViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TestViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TestViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/DeleteAptitudeTest/{aptitudeTestID}": {
+      "get": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "parameters": [
+          {
+            "name": "aptitudeTestID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/GetAptitudeTest/{aptitudeTestID}": {
+      "get": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "parameters": [
+          {
+            "name": "aptitudeTestID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/GetAptitudeTestByTestID/{testID}": {
+      "get": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "parameters": [
+          {
+            "name": "testID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/GetAptitudeTestByTestDetailID/{testDetailID}": {
+      "get": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "parameters": [
+          {
+            "name": "testDetailID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/AnswerQuestionOption/{testDetailID}/{questionID}/{optionID}": {
+      "get": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "parameters": [
+          {
+            "name": "testDetailID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "questionID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "optionID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/ProcessTestStatus/{ID}/{testType}/{status}": {
+      "get": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "testType",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AptitudeTest/SubmitTestDetail/{ID}": {
+      "get": {
+        "tags": [
+          "AptitudeTest"
+        ],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Authentication/SignupUser": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSignupRequestViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSignupRequestViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSignupRequestViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Authentication/SigninUser": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSigninRequestViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSigninRequestViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSigninRequestViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Authentication/GetToken": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ExperienceLevel/GetAllExperienceLevels": {
+      "post": {
+        "tags": [
+          "ExperienceLevel"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/GetAllRoles": {
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Skill/GetAllSkills": {
+      "post": {
+        "tags": [
+          "Skill"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/TestCategory/GetAllTestCategories": {
+      "get": {
+        "tags": [
+          "TestCategory"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/UpdateUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/CreateUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/DeleteUser/{userID}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/GetAllUsers/{userID}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/GetAllNotifications/{userID}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/GetAllApplicants": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/GetUsersByRole": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "roleName",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "All"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateUserViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "MobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsActive": {
+            "type": "boolean"
+          },
+          "IsApproved": {
+            "type": "boolean"
+          },
+          "UserProfile": {
+            "$ref": "#/components/schemas/UserProfileViewModel"
+          },
+          "Skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "Role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExperienceLevelViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OptionViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuestionViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "TestCategory": {
+            "$ref": "#/components/schemas/TestCategoryViewModel"
+          },
+          "IsActive": {
+            "type": "boolean"
+          },
+          "Options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OptionViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StatusViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestCategoryViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "QuestionsCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestDetailQuestionOptionViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "QuestionID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "OptionID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "TestDetail": {
+            "$ref": "#/components/schemas/TestDetailViewModel"
+          },
+          "Question": {
+            "$ref": "#/components/schemas/QuestionViewModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestDetailViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "TestCategory": {
+            "$ref": "#/components/schemas/TestCategoryViewModel"
+          },
+          "TimeOut": {
+            "type": "number",
+            "format": "double"
+          },
+          "StartTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "EndTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "QuestionsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Score": {
+            "type": "number",
+            "format": "double"
+          },
+          "TestResult": {
+            "$ref": "#/components/schemas/TestResultViewModel"
+          },
+          "CreatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "TestDetailQuestionOption": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestDetailQuestionOptionViewModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestResultViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TestViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "UserID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ApplicantName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "CreatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CreatedByID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Status": {
+            "$ref": "#/components/schemas/StatusViewModel"
+          },
+          "TestDetail": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestDetailViewModel"
+            },
+            "nullable": true
+          },
+          "TotalTestTimeout": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateUserViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "MobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsActive": {
+            "type": "boolean"
+          },
+          "IsApproved": {
+            "type": "boolean"
+          },
+          "CreatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "UserProfile": {
+            "$ref": "#/components/schemas/UserProfileViewModel"
+          },
+          "Skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "Role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserProfileViewModel": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Company": {
+            "type": "string",
+            "nullable": true
+          },
+          "Designation": {
+            "type": "string",
+            "nullable": true
+          },
+          "TotalExperience": {
+            "type": "number",
+            "format": "float"
+          },
+          "ExperienceLevel": {
+            "$ref": "#/components/schemas/ExperienceLevelViewModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserSigninRequestViewModel": {
+        "type": "object",
+        "properties": {
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserSignupRequestViewModel": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "MobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "type": "string",
+            "nullable": true
+          },
+          "PasswordHash": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "PasswordSalt": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "Administrator": {
+            "type": "boolean"
+          },
+          "Employee": {
+            "type": "boolean"
+          },
+          "HR": {
+            "type": "boolean"
+          },
+          "Hiree": {
+            "type": "boolean"
+          },
+          "isApplicantRegistration": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
