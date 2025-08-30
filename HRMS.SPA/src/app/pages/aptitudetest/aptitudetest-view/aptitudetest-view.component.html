@@ -1,0 +1,170 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    @if(aptitudeTest()){
+    <span>
+      <div class="row m-b-24">
+        <div class="col-sm-4 d-flex align-items-center">
+          <h4 class="f-s-14 f-s-18 f-w-600">
+            #{{ aptitudeTest()?.ID }}
+          </h4>
+        </div>
+        <div class="col-sm-8 text-right">
+          <a routerLink="/aptitudetest/list" mat-stroked-button class="m-r-10">Back to Tests</a>
+
+          <!--<a [routerLink]="['/aptitudetest/edit/', invoiceDetail()?.id]" mat-flat-button>Edit Test</a>-->
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="row p-y-24">
+        <div class="col-sm-6">
+          <span class="f-w-600 f-s-15"> Status: </span>
+          <h6 class="m-t-5 m-b-0 f-w-500 f-s-14">
+            {{ aptitudeTest()?.Status!.Name }}
+          </h6>
+        </div>
+        <div class="col-sm-6 text-right">
+          <span class="f-w-600 f-s-15"> Created Date: </span>
+          <h6 class="m-t-5 m-b-0 f-w-500 f-s-14">
+            {{ aptitudeTest()?.CreatedDate | date : "fullDate" }}
+          </h6>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="row p-y-24">
+        <div class="col-sm-6">
+          <span class="f-w-600 f-s-15"> Test: </span>
+          <h6 class="m-t-5 m-b-0 f-w-500 f-s-14">
+            {{ aptitudeTest()?.Name }}
+          </h6>
+        </div>
+
+        <div class="col-sm-6 text-right">
+          <span class="f-w-600 f-s-15"> <!--Created By:--> </span>
+          <h6 class="m-t-5 m-b-0 f-w-500 f-s-14">
+            {{ aptitudeTest()?.CreatedByID }}
+          </h6>
+        </div>
+      </div>
+
+      <div class="b-1 table-responsive">
+        <table mat-table [dataSource]="aptitudeTest()?.TestDetail || []" class="no-wrap v-middle">
+          <ng-container matColumnDef="TestCategory">
+            <th mat-header-cell *matHeaderCellDef class="f-s-15 f-w-600">
+              Test Category
+            </th>
+            <td class="font-normal" mat-cell *matCellDef="let element">
+              {{ element.TestCategory.Name }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="TotalQuestions">
+            <th mat-header-cell *matHeaderCellDef class="f-s-15 f-w-600">
+              Total Questions
+            </th>
+            <td class="font-normal" mat-cell *matCellDef="let element">
+              {{ element.QuestionsCount }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="TimeOut">
+            <th mat-header-cell *matHeaderCellDef class="f-s-15 f-w-600">
+              Time Out
+            </th>
+            <td class="font-normal" mat-cell *matCellDef="let element">
+              {{ element.TimeOut }} (Mins)
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="CompletionTime">
+            <th mat-header-cell *matHeaderCellDef class="f-s-15 f-w-600">
+              Completed in
+            </th>
+            <td class="font-normal" mat-cell *matCellDef="let element">
+              @if(element.StartTime && element.EndTime){
+              {{getMinutesBetweenDates(element.StartTime, element.EndTime)}} (Mins)
+              }
+              @else{
+              }
+            </td>
+          </ng-container>
+
+
+          <!--<ng-container matColumnDef="StartTime">
+          <th mat-header-cell *matHeaderCellDef class="f-s-15 f-w-600">
+            Start Time
+          </th>
+          <td class="font-normal" mat-cell *matCellDef="let element">
+            {{ element.StartTime | date: 'MMM d, y, h:mm:ss a' }}
+          </td>
+        </ng-container>-->
+          <!--<ng-container matColumnDef="EndTime">
+          <th mat-header-cell *matHeaderCellDef class="f-s-15 f-w-600">
+            End Time
+          </th>
+          <td class="font-normal" mat-cell *matCellDef="let element">
+            {{ element.EndTime | date: 'MMM d, y, h:mm:ss a' }}
+          </td>
+        </ng-container>-->
+
+          <ng-container matColumnDef="TestResult">
+            <th mat-header-cell *matHeaderCellDef class="f-s-15 f-w-600">
+              Result
+            </th>
+            <td class="font-normal" mat-cell *matCellDef="let element">
+              <span class="p-x-8 p-y-4 f-w-500 rounded-pill f-s-12"
+                    [ngStyle]="{
+                             'background-color':
+                               element.TestResult.Name === 'Not Attempted'
+                                 ? 'rgb(255,165,0)'
+                                 : element.TestResult.Name === 'Passed'
+                                 ? 'rgb(0,128,0)'
+                                 : element.TestResult.Name === 'Failed'
+                                 ? 'rgb(220,20,60)'
+                                 : 'transparent',
+                             color: 'white'
+                           }">
+                {{ element.TestResult.Name }}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Score">
+            <th mat-header-cell *matHeaderCellDef class="f-s-15 f-w-600">
+              Score
+            </th>
+            <td class="font-normal" mat-cell *matCellDef="let element">
+              @if(element.TestResult.Name == "Not Attempted"){
+              <!--<span class="text-danger">Not Attempted</span>-->
+              }
+              @else{
+              <mat-progress-bar mode="determinate" value="{{ element.Score }}"> </mat-progress-bar>
+              {{ element.Score }} %
+              }
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+
+      <!--<div class="text-right m-t-30">
+      <h5 class="m-b-5 f-w-600 f-s-16">Total Test Time: {{ totalTestTime }} Mins</h5>
+      <h5 class="f-w-600 f-s-16 m-b-24">Total Questions: {{ totalTestQuestions }}</h5>
+      <mat-divider></mat-divider>
+      <h3 class="m-b-0 p-t-20 f-s-18">Test Completed in: {{ totalTestCompletionTime }} Mins</h3>
+    </div>-->
+
+      <div class="text-right m-t-30">
+        <h5 class="m-b-5 f-w-600 f-s-16">
+          Total Test Time: {{ totalTestTime }} Mins
+        </h5>
+        <span class="f-w-600 f-s-16">Total Questions: {{ totalTestQuestions }}</span>
+        <h3 class="m-b-0 b-t-1 p-t-20 f-s-18 m-t-24">
+          Test Completed in: {{ totalTestCompletionTime}} Mins
+        </h3>
+      </div>
+
+
+    </span>
+    }
+  </mat-card-content>
+</mat-card>

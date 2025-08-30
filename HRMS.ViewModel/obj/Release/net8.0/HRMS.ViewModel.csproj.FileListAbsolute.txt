@@ -1,0 +1,12 @@
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\bin\Release\net8.0\HRMS.ViewModel.deps.json
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\bin\Release\net8.0\HRMS.ViewModel.dll
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\bin\Release\net8.0\HRMS.ViewModel.pdb
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\obj\Release\net8.0\HRMS.ViewModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\obj\Release\net8.0\HRMS.ViewModel.AssemblyInfoInputs.cache
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\obj\Release\net8.0\HRMS.ViewModel.AssemblyInfo.cs
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\obj\Release\net8.0\HRMS.ViewModel.csproj.CoreCompileInputs.cache
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\obj\Release\net8.0\HRMS.ViewModel.sourcelink.json
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\obj\Release\net8.0\HRMS.ViewModel.dll
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\obj\Release\net8.0\refint\HRMS.ViewModel.dll
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\obj\Release\net8.0\HRMS.ViewModel.pdb
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.ViewModel\obj\Release\net8.0\ref\HRMS.ViewModel.dll
