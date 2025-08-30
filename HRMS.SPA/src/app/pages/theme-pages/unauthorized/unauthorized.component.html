@@ -1,0 +1,282 @@
+<mat-sidenav-container>
+  <mat-sidenav-content class="">
+    <!-- ------------------------------------------------------------------
+    Header
+    ------------------------------------------------------------------ -->
+    <mat-toolbar class="topbar topbar-xl m-auto">
+      <div class="container full-width p-xs-6">
+        <!-- --------------------------------------------------------------- -->
+        <div class="branding p-x-0">
+          <app-branding></app-branding>
+        </div>
+
+        <!-- --------------------------------------------------------------- -->
+
+        <span class="flex-1-auto"></span>
+
+        <div class="d-none d-lg-flex">
+          <!-- --------------------------------------------------------------- -->
+          <!--  Links -->
+          <!-- --------------------------------------------------------------- -->
+          
+
+          <!-- --------------------------------------------------------------- -->
+          <!--  Links -->
+          <!-- --------------------------------------------------------------- -->
+         
+          <mat-menu
+            #appsmenu="matMenu"
+            class="apps-dd cardWithShadow"
+            xPosition="before"
+          >
+            
+          </mat-menu>
+
+
+        </div>
+
+        <!-- Mobile Menu -->
+      
+      </div>
+    </mat-toolbar>
+
+    <!-- ------------------------------------------------------------------
+   End Header
+    ------------------------------------------------------------------ -->
+
+    <!-- ------------------------------------------------------------------
+    Banner
+    ------------------------------------------------------------------ -->
+    <div class="overflow-hidden banner-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 d-flex align-items-center">
+            <div>
+              <span class="f-s-16 f-w-600 m-b-16 d-flex align-items-center"
+                ><i-tabler name="rocket" class="text-secondary m-r-8"></i-tabler
+                >Insufficient Roles !</span
+              >
+              <h1 class="banner-title m-0">
+                No Authorization !
+                <span class="text-primary">You Cannot </span> Access
+                this page
+              </h1>
+              <p class="f-s-18 p-y-24 m-t-12 m-0 banner-subtitle">
+                  Qeros HRMS
+              </p>
+              <div class="m-t-24 hstack">
+                <a
+                  mat-flat-button
+                  color="primary"
+                   (click)="goBack()"
+                  class="btn-custom"
+                  >Go Back !</a
+                >
+                <!--<a
+                  mat-stroked-button
+                  color="primary"
+                  (click)="gotoDemos()"
+                  class="btn-custom border-primary"
+                  >Live Preview</a
+                >-->
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 d-none d-lg-flex">
+            <div class="p-24 banner-slider" style="background-color:white">
+              <div class="d-flex">
+                <div>
+                 
+                </div>
+                <div>
+               
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------------------------------------------------------
+    End Banner
+    ------------------------------------------------------------------ -->
+
+
+    <!-- ------------------------------------------------------------------
+    footer
+    ------------------------------------------------------------------ -->
+    <footer class="p-y-30">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-sm-5 col-lg-4 text-center">
+            <span>
+              <img src="assets/images/landingpage/favicon.png" alt="logo" />
+            </span>
+            <div class="f-s-14 m-t-8">
+              All rights reserved by Qeros Software Consulting Private Limited 
+              <a [routerLink]="['https://adminmart.com/']" class="f-s-14"
+                > </a
+              >.
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ------------------------------------------------------------------
+    end footer
+    ------------------------------------------------------------------ -->
+  </mat-sidenav-content>
+
+  <!-- ------------------------------------------------------------------
+    Mobile Sidebar
+    ------------------------------------------------------------------ -->
+  <mat-sidenav
+    #filterNavRight
+    mode="over"
+    position="end"
+    class="filter-sidebar"
+  >
+    <div>
+      <div class="branding">
+        @if(options.theme === 'light') {
+        <a href="/">
+          <img
+            src="./assets/images/logos/logo-HRMS.png"
+            class="align-middle m-2"
+            alt="logo"
+          />
+        </a>
+        } @if(options.theme === 'dark') {
+        <a href="/">
+          <img
+            src="./assets/images/logos/logo-HRMS.png"
+            class="align-middle m-2"
+            alt="logo"
+          />
+        </a>
+        }
+      </div>
+
+      <mat-accordion>
+        <mat-expansion-panel class="shadow-none">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="f-s-16 f-w-500"> Demos </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <h5 class="f-s-18  f-w-600">Different Demos</h5>
+            <span>Included with the package</span>
+            <div class="row m-t-24">
+              @for(demo of demos; track demo.url) {
+              <div class="col-lg-3 m-b-16">
+                <div>
+                  <div class="img-overlay rounded">
+                    <img
+                      [src]="demo.imgSrc"
+                      alt="demos"
+                      class="rounded w-100"
+                    />
+                    <div class="overlay-content">
+                      <a href="{{ demo.url }}" mat-flat-button color="primary">
+                        Live preview
+                      </a>
+                    </div>
+                  </div>
+                  <span class="f-s-14 d-block text-center m-t-8">{{
+                    demo.name
+                  }}</span>
+                </div>
+              </div>
+              }
+            </div>
+            <!-- apps -->
+            <h5 class="f-s-18  f-w-600 m-t-24">Different Apps</h5>
+            <div class="row m-t-24">
+              @for(app of appdemos; track app.url) {
+              <div class="col-lg-3 m-t-16">
+                <div>
+                  <div class="img-overlay rounded">
+                    <img [src]="app.imgSrc" alt="apps" class="rounded w-100" />
+                    <div class="overlay-content">
+                      <a href="{{ app.url }}" mat-flat-button color="primary">
+                        Live preview
+                      </a>
+                    </div>
+                  </div>
+                  <span class="f-s-14 d-block text-center m-t-8">{{
+                    app.name
+                  }}</span>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="shadow-none">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="f-s-16 f-w-500"> Pages </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <div class="row">
+              @for(appdd of apps; track appdd.img) {
+              <div class="col-12 text-hover-primary">
+                <a
+                  [routerLink]="[appdd.link]"
+                  class="d-flex align-items-center text-decoration-none m-b-24"
+                >
+                  <button
+                    mat-mini-fab
+                    class="text-primary bg-light-primary shadow-none rounded"
+                  >
+                    <img [src]="appdd.img" width="20" />
+                  </button>
+
+                  <div class="m-l-16">
+                    <h5
+                      class="f-s-14 f-w-600 m-0 textprimary f-s-14 hover-text"
+                    >
+                      {{ appdd.title }}
+                    </h5>
+                    <span class="f-s-14 f-s-12">{{ appdd.subtitle }}</span>
+                  </div>
+                </a>
+              </div>
+              }
+            </div>
+            <h4 class="f-s-18 f-w-600  m-b-16">Quick Links</h4>
+            @for(quicklink of quicklinks; track quicklink.title) {
+            <div class="text-hover-primary">
+              <a
+                [routerLink]="['quicklink.link']"
+                class="hover-text text-decoration-none f-s-14 f-w-600 d-block p-y-8"
+                >{{ quicklink.title }}</a
+              >
+            </div>
+            }
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <div class="p-x-16">
+        <a
+          href="
+            qeros.com
+          "
+          class="d-flex align-items-center text-decoration-none f-s-14 p-y-16"
+        >
+          <span class="f-s-15 f-w-500 m-l-8">Documentation</span>
+        </a>
+        <a
+          [routerLink]="['https://adminmart.com/support']"
+          class="d-flex align-items-center text-decoration-none f-s-14 p-y-16"
+        >
+          <span class="f-s-15 f-w-500 m-l-8">Support</span>
+        </a>
+        <a mat-flat-button color="primary" class="w-100" [routerLink]="['/']"
+          >Buy Now</a
+        >
+      </div>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>

@@ -1,0 +1,2 @@
+
+Time: 23-06-2025 22:25:32, Controller: User, Action: CreateUser, Exception: An error occurred while saving the entity changes. See the inner exception for details.

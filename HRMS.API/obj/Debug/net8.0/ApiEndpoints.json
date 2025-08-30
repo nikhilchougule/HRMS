@@ -1,0 +1,364 @@
+[
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "AddAptitudeTest",
+    "RelativePath": "api/AptitudeTest/AddAptitudeTest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testViewModel",
+        "Type": "HRMS.ViewModel.Common.TestViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "AnswerQuestionOption",
+    "RelativePath": "api/AptitudeTest/AnswerQuestionOption/{testDetailID}/{questionID}/{optionID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testDetailID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "questionID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "optionID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "DeleteAptitudeTest",
+    "RelativePath": "api/AptitudeTest/DeleteAptitudeTest/{aptitudeTestID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aptitudeTestID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "GetAllAptitudeTests",
+    "RelativePath": "api/AptitudeTest/GetAllAptitudeTests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "GetApplicantAptitudeTests",
+    "RelativePath": "api/AptitudeTest/GetApplicantAptitudeTests/{applicantID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicantID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "GetAptitudeTest",
+    "RelativePath": "api/AptitudeTest/GetAptitudeTest/{aptitudeTestID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "aptitudeTestID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "GetAptitudeTestByTestDetailID",
+    "RelativePath": "api/AptitudeTest/GetAptitudeTestByTestDetailID/{testDetailID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testDetailID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "GetAptitudeTestByTestID",
+    "RelativePath": "api/AptitudeTest/GetAptitudeTestByTestID/{testID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "testID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "ProcessTestStatus",
+    "RelativePath": "api/AptitudeTest/ProcessTestStatus/{ID}/{testType}/{status}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "testType",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AptitudeTestController",
+    "Method": "SubmitTestDetail",
+    "RelativePath": "api/AptitudeTest/SubmitTestDetail/{ID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AuthenticationController",
+    "Method": "GetToken",
+    "RelativePath": "api/Authentication/GetToken",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AuthenticationController",
+    "Method": "SigninUser",
+    "RelativePath": "api/Authentication/SigninUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userSigninRequestViewModel",
+        "Type": "HRMS.ViewModel.Authentication.AuthenticationViewModel\u002BUserSigninRequestViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.AuthenticationController",
+    "Method": "SignupUser",
+    "RelativePath": "api/Authentication/SignupUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userSignupRequestViewModel",
+        "Type": "HRMS.ViewModel.Authentication.AuthenticationViewModel\u002BUserSignupRequestViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.ExperienceLevelController",
+    "Method": "GetAllExperienceLevels",
+    "RelativePath": "api/ExperienceLevel/GetAllExperienceLevels",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.RoleController",
+    "Method": "GetAllRoles",
+    "RelativePath": "api/Role/GetAllRoles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.SkillController",
+    "Method": "GetAllSkills",
+    "RelativePath": "api/Skill/GetAllSkills",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.TestCategoryController",
+    "Method": "GetAllTestCategories",
+    "RelativePath": "api/TestCategory/GetAllTestCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.UserController",
+    "Method": "CreateUser",
+    "RelativePath": "api/User/CreateUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userViewModel",
+        "Type": "HRMS.ViewModel.Common.CreateUserViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.UserController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/User/DeleteUser/{userID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.UserController",
+    "Method": "GetAllApplicants",
+    "RelativePath": "api/User/GetAllApplicants",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.UserController",
+    "Method": "GetAllNotifications",
+    "RelativePath": "api/User/GetAllNotifications/{userID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.UserController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/User/GetAllUsers/{userID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.UserController",
+    "Method": "GetUsersByRole",
+    "RelativePath": "api/User/GetUsersByRole",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HRMS.API.Controllers.API_V1.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/User/UpdateUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userViewModel",
+        "Type": "HRMS.ViewModel.Common.UpdateUserViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

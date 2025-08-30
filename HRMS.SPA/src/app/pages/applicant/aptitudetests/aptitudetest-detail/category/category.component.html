@@ -1,0 +1,70 @@
+<mat-card class="cardWithShadow overflow-hidden" sticky>
+  <div class="bg-primary text-white p-y-10 p-x-24">
+    <mat-card-title class="d-flex align-items-center gap-10" style="float:left">
+
+      <div *ngIf="testCategoryName">
+        {{ testCategoryName}}
+      </div>
+      <div *ngIf="!testCategoryName">
+        Loading your Test. Please wait...
+      </div>
+    </mat-card-title>
+
+    <mat-card-title class="d-flex align-items-center gap-10" style="float:right">
+      Time Remaining:
+      <label id="TestTimer">{{testTimer}}</label>
+    </mat-card-title>
+  </div>
+</mat-card>
+
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <mat-vertical-stepper #stepper>
+
+      <div *ngIf="testDetailData?.TestDetailQuestionOption!.length > 0">
+        <mat-step *ngFor="let questionItem of testDetailData!.TestDetailQuestionOption; let i = index">
+          <!--<ng-template matStepLabel>{{ question.Question.Name }}</ng-template>
+          <h3 class="m-t-12">Step 1 - Introduction</h3>-->
+          <h3 class="m-t-12"> {{ questionItem.Question.Name }}</h3>
+
+          <p>
+            <mat-radio-group formControlName="selectedOption" class="d-flex flex-column">
+              <section>
+                <mat-radio-button style="display: inline; display: flex; align-content: center; align-items: center; height: 30px; "
+                                  *ngFor="let option of questionItem.Question.Options; let i = index"
+                                  [value]="option.ID"
+                                  color="primary"
+                                  (change)="checkOption($event, questionItem.Question.ID)"
+                                  class="m-b-8 questions-group bg-light-error f-w-500 p-x-8 p-y-4 rounded-pill f-s-12">
+                  {{ option.Name }}
+                </mat-radio-button>
+              </section>
+            </mat-radio-group>
+          </p>
+          <div class="d-flex align-items-center gap-12">
+            <div *ngIf="i > 0;">
+              <button mat-flat-button matStepperPrevious class="bg-secondary">Back</button>
+            </div>
+            <button mat-flat-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+      </div>
+
+      <div *ngIf="testDetailData?.TestDetailQuestionOption!.length > 0">
+        <mat-step>
+          <!--<ng-template matStepLabel>Congratulations!</ng-template>
+          <h3 class="m-t-12">Step 11 - Congratulations!</h3>-->
+          <p>
+            Please press submit below to finish your test !
+          </p>
+          <div class="d-flex align-items-center gap-12">
+            <button mat-flat-button matStepperPrevious class="bg-secondary">Back</button>
+            <!--<button mat-flat-button (click)="stepper.reset()">Reset</button>-->
+            <button mat-flat-button class="bg-error" (click)="submitTestDetail()">Submit</button>
+          </div>
+        </mat-step>
+      </div>
+
+    </mat-vertical-stepper>
+  </mat-card-content>
+</mat-card>

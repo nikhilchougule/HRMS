@@ -1,0 +1,78 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="row justify-content-between">
+      <div class="col-lg-4">
+        <mat-form-field appearance="outline" class="w-100 hide-hint">
+          <mat-label>Search</mat-label>
+          <input matInput (keyup)="applyFilter($event)" />
+          <mat-icon matSuffix>
+            <i-tabler name="search" class="icon-20 d-flex m-t-2"></i-tabler>
+          </mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-lg-3">
+        <!--<mat-form-field appearance="outline" class="w-100 hide-hint">
+          <mat-label>Category</mat-label>
+          <mat-select
+            required
+            [value]="selectedCategory()"
+            (selectionChange)="ddlChange($event)"
+          >
+            <mat-option value="All" selected>All</mat-option>
+            <mat-option value="Web">Web</mat-option>
+            <mat-option value="Android">Android</mat-option>
+            <mat-option value="Angular">Angular</mat-option>
+            <mat-option value="Design">Design</mat-option>
+          </mat-select>
+        </mat-form-field>-->
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="cardWithShadow overflow-hidden"  *ngIf="!aptitudeTestsFound">
+  <mat-card-content class="text-center">
+    <mat-card-title class="m-b-0 f-s-16">
+      No Aptitude Tests found for you !.
+    </mat-card-title> 
+  </mat-card-content>
+</mat-card>
+
+<div class="row">
+  @for(applicantTest of applicantAptitudeTestsList(); track applicantTest.Name) {
+  <div class="col-sm-6 col-lg-4">
+    <mat-card class="cardWithShadow overflow-hidden">
+      <div class="course-header text-white p-12 bg-primary d-flex justify-content-between">
+        <mat-card-title class="m-b-0 f-s-16">
+          {{applicantTest.Name}}
+        </mat-card-title>
+        <span class="d-flex align-items-center gap-4 f-s-14">
+          <i-tabler name="clock" class="icon-16 d-flex"></i-tabler>{{ applicantTest.TotalTestTimeout }} min
+        </span>
+      </div>
+      <mat-card-content class="text-center">
+        <h3 class="m-b-4 f-s-16 f-w-600">
+          @for(testDetail of applicantTest.TestDetail; track testDetail.ID) {
+          {{testDetail.TestCategory.Name}}
+          @if(testDetail.ID === applicantTest.TestDetail[applicantTest.TestDetail.length - 1].ID) {
+
+          }@else{
+          |
+          }
+          }
+
+        </h3>
+        <span class="f-s-12"> {{ applicantTest.CreatedDate | date:'dd-MMM-yyyy' }} </span>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <div class="text-center p-y-8 p-x-12">
+        <a mat-button
+           (click)="redirectToApplicantTest(applicantTest.ID)"
+           class="w-100">
+          Start
+        </a>
+      </div>
+    </mat-card>
+  </div>
+  }
+</div>

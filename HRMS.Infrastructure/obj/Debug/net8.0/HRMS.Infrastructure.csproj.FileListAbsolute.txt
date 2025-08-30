@@ -1,0 +1,12 @@
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Infrastructure.deps.json
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Infrastructure.dll
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\bin\Debug\net8.0\HRMS.Infrastructure.pdb
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.AssemblyInfo.cs
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.sourcelink.json
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.dll
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\refint\HRMS.Infrastructure.dll
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\HRMS.Infrastructure.pdb
+C:\Users\nikhi\Source\Repos\Devops\HRMS\HRMS.Infrastructure\obj\Debug\net8.0\ref\HRMS.Infrastructure.dll
